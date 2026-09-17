@@ -11,9 +11,26 @@ The following Platform facilities are currently provided:
 
 ## Dependencies
 
-`EDP-Platform` depends only on `EDP-System` for the Composition Framework and standard C++ facilities needed by its platform-neutral utilities.
+```text
+EDP-Platform
+└── EDP-System [mandatory]
+```
 
-It contains no Arduino, ESP-IDF, FreeRTOS, operating-system, task, semaphore, mutex, or platform critical-section implementation. Concrete providers satisfying Platform capabilities belong in the corresponding concrete Platform repositories.
+`EDP-Platform` currently has no optional ESPressio library dependencies.
+
+Concrete Platform providers are selected by consuming application Composition and are not dependencies of this abstraction library.
+
+See [DEPENDENCY_GRAPH.MD](./DEPENDENCY_GRAPH.MD) for the maintained dependency graph, dependency classification, and demo-only provider notes.
+
+## Demos
+
+A buildable `ConcurrentSnapshot` demonstration is provided under [`./demos/concurrent-snapshot-basic`](./demos/concurrent-snapshot-basic) for:
+
+- Arduino IDE;
+- PlatformIO Arduino;
+- PlatformIO ESP-IDF.
+
+The Arduino targets use `EDP-Platform-Arduino`; the ESP-IDF target uses `EDP-Platform-ESP-IDF`. Those are demo/build selections only and do not alter the library dependency graph.
 
 ## Development Status
 
