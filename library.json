@@ -1,0 +1,30 @@
+{
+  "name": "EDP-Platform",
+  "description": "Platform-neutral capability and concurrency contracts for the ESPressio Development Platform",
+  "keywords": "espressio,platform,capability,composition,concurrency,embedded,hal",
+  "homepage": "https://espressio.org",
+  "authors": {
+    "name": "Simon J. Stuart",
+    "maintainer": true,
+    "url": "https://espressio.org"
+  },
+  "build": {
+    "flags": ["-std=gnu++17"],
+    "unflags": ["-std=gnu++11"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ESPressio-Development-Platform/EDP-Platform.git"
+  },
+  "version": "0.1.0",
+  "license": "Apache-2.0",
+  "frameworks": "*",
+  "platforms": "*",
+  "dependencies": [
+    {
+      "name": "EDP-System",
+      "version": "https://github.com/ESPressio-Development-Platform/EDP-System.git#main",
+      "platforms": "*"
+    }
+  ]
+}
