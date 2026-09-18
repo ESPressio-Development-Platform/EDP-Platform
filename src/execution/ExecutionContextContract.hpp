@@ -47,11 +47,10 @@ namespace ESPressio::Platform::Execution::Detail {
         );
 
         static_assert(
-            Properties::template Value<ControlStorageBytes> > 0U &&
             Properties::template Value<ControlStorageAlignment> > 0U &&
             Properties::template Value<StackStorageAlignment> > 0U &&
             Properties::template Value<StackAllocationGranularityBytes> > 0U,
-            "ExecutionContext provider storage requirements must be positive"
+            "ExecutionContext provider storage alignments and stack granularity must be positive"
         );
 
         static_assert(
