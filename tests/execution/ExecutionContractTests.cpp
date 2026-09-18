@@ -139,6 +139,9 @@ namespace Test {
                 return {};
             }
 
+            /// Yields the synchronous test execution runtime.
+            static void Yield() noexcept {}
+
     };
 
 

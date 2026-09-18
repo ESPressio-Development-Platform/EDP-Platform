@@ -118,6 +118,11 @@ namespace ESPressio::Platform::Execution::Detail {
             std::declval<const TExecutionContextProvider&>().GetStackTelemetry()
         );
 
+        /// Return type produced by yielding the selected execution runtime.
+        using YieldResult = decltype(
+            TExecutionContextProvider::Yield()
+        );
+
         static_assert(
             std::is_same_v<InitializeResult, ExecutionInitializationResult>,
             "ExecutionContext Initialize must return ExecutionInitializationResult"
@@ -146,6 +151,18 @@ namespace ESPressio::Platform::Execution::Detail {
         static_assert(
             std::is_same_v<StackTelemetryResult, ExecutionStackTelemetry>,
             "ExecutionContext GetStackTelemetry must return ExecutionStackTelemetry"
+        );
+
+        static_assert(
+            std::is_same_v<YieldResult, void>,
+            "ExecutionContext Yield must return void"
+        );
+
+        static_assert(
+            noexcept(
+                TExecutionContextProvider::Yield()
+            ),
+            "ExecutionContext Yield must be noexcept"
         );
 
     };

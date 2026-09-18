@@ -46,6 +46,8 @@ The entry function returns when its higher-level execution semantics are complet
 
 `Destroy` retires the native context and releases its claim on caller-supplied storage.
 
+`Yield()` explicitly yields the current native execution runtime without introducing ESPressio Threading semantics.
+
 ## Scheduling options
 
 Priority, processor affinity and stack telemetry are provider capabilities.
