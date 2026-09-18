@@ -1,7 +1,7 @@
 #include <cstdint>
 
 #include <ESPressio_Platform.hpp>
-#include <ESPressio_Platform_ESP_IDF.hpp>
+#include <ESPressio_Platform_Portable.hpp>
 
 namespace Demo {
 
@@ -21,21 +21,21 @@ namespace Demo {
 
     /// Runs the ConcurrentSnapshot demonstration.
     int Run() noexcept {
-        using AtomicProvider = ESPressio::Platform::ESPIDF::Concurrency::AtomicWord32Provider;
+        using AtomicProvider = ESPressio::Platform::Portable::Concurrency::AtomicWord32Provider;
         using Snapshot = ESPressio::Platform::Concurrency::ConcurrentSnapshot<
             SharedState,
             AtomicProvider
         >;
 
         Snapshot snapshot(
-            SharedState{
+            SharedState {
                 0U,
                 100U
             }
         );
 
         snapshot.Publish(
-            SharedState{
+            SharedState {
                 1U,
                 200U
             }
@@ -54,5 +54,7 @@ namespace Demo {
 
 /// Runs the demonstration from the ESP-IDF application entry point.
 extern "C" void app_main() {
-    static_cast<void>(Demo::Run());
+    static_cast<void>(
+        Demo::Run()
+    );
 }

@@ -1,5 +1,9 @@
 # Demos
 
-- `concurrent-snapshot-basic` — coherent fixed-storage single-writer/multi-reader publication through `ConcurrentSnapshot`.
+- `concurrent-snapshot-basic` — coherent fixed-storage publication through `ConcurrentSnapshot`, using the Standard C++ `AtomicWord32` provider from `EDP-Platform-Portable`.
+- `synchronization-basic` — basic mutex and latched-signal use through the FreeRTOS concrete providers.
+- `execution-context-basic` — caller-supplied control/stack storage used to create, start, join and destroy one native execution context.
 
-The Arduino targets use the Arduino `AtomicWord32` concrete provider; the ESP-IDF target uses the ESP-IDF provider. These are demo-only concrete selections and do not change `EDP-Platform` library dependencies.
+Each logical demo provides Arduino IDE, PlatformIO Arduino and PlatformIO ESP-IDF-targeted surfaces.
+
+Concrete providers are demo/build selections only and do not change the `EDP-Platform` dependency graph.
