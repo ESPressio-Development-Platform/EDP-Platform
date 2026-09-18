@@ -1,13 +1,38 @@
 # ESPressio Platform
 
-`EDP-Platform` defines platform-level abstractions and platform-neutral foundational utilities used by higher ESPressio domains without embedding Arduino, ESP-IDF, FreeRTOS, or other SDK-specific code into those domains.
+`EDP-Platform` defines Platform-level abstractions and platform-neutral foundational utilities consumed by higher ESPressio domains.
+
+It contains **contracts, not platform implementations**.
+
+Arduino, ESP-IDF, FreeRTOS, Standard C++ and other concrete implementations belong in their corresponding `EDP-Platform-*` repositories and are selected by application Composition.
+
+## Architectural Dependency Rule
+
+**`EDP-Platform` is a foundational abstraction layer. Its only permitted ESPressio dependency is `EDP-System`, used solely for the Composition Framework.**
+
+`EDP-Platform` must never depend on another ESPressio domain/library.
+
+The dependency direction is always:
+
+```text
+EDP-System
+    ↓
+EDP-Platform
+    ↓
+higher ESPressio domains
+```
+
+and never the reverse.
+
+If a proposed Platform abstraction appears to require `EDP-Memory`, `EDP-Clock`, `EDP-Threading`, `EDP-Serializable` or another higher ESPressio library, the abstraction must be redesigned in Platform-owned or Standard C++ vocabulary rather than adding that dependency.
 
 ## Contents
 
 The following Platform facilities are currently provided:
 
-- [Concurrency Foundation](./docs/CONCURRENCY.MD)  
-  Defines the lock-free 32-bit atomic-word capability contract and the fixed-storage single-writer/multi-reader `ConcurrentSnapshot` utility required for coherent read-mostly state publication.
+- [Concurrency Foundation](./docs/CONCURRENCY.MD) — lock-free 32-bit atomic-word capability and fixed-storage `ConcurrentSnapshot`.
+- [Synchronization](./docs/SYNCHRONIZATION.MD) — mutex, recursive mutex, read/write mutex, counting semaphore, latched signal and spin-lock capability contracts.
+- [Execution Context](./docs/EXECUTION.MD) — caller-storage-backed native execution-context capability used by higher execution semantics.
 
 ## Dependencies
 
@@ -16,22 +41,35 @@ EDP-Platform
 └── EDP-System [mandatory]
 ```
 
-`EDP-Platform` currently has no optional ESPressio library dependencies.
+`EDP-System` is required only for the Composition Framework.
+
+`EDP-Platform` has no optional ESPressio library dependencies.
 
 Concrete Platform providers are selected by consuming application Composition and are not dependencies of this abstraction library.
 
-See [DEPENDENCY_GRAPH.MD](./DEPENDENCY_GRAPH.MD) for the maintained dependency graph, dependency classification, and demo-only provider notes.
+See [DEPENDENCY_GRAPH.MD](./DEPENDENCY_GRAPH.MD) for the maintained dependency graph.
+
+## Concrete Provider Ownership
+
+Concrete ownership follows the API that implements the abstraction:
+
+```text
+Arduino API     -> EDP-Platform-Arduino
+ESP-IDF API     -> EDP-Platform-ESP-IDF
+FreeRTOS API    -> EDP-Platform-FreeRTOS
+Standard C++    -> EDP-Platform-Portable
+```
+
+A framework embedding another runtime does not transfer ownership. For example, a FreeRTOS-backed mutex used by an Arduino-ESP32 application is still provided by `EDP-Platform-FreeRTOS`.
 
 ## Demos
 
-A buildable `ConcurrentSnapshot` demonstration is provided under [`./demos/concurrent-snapshot-basic`](./demos/concurrent-snapshot-basic) for:
+Buildable demonstrations remain under `./demos` for Arduino IDE, PlatformIO Arduino and PlatformIO ESP-IDF targets as required by ESPressio policy.
 
-- Arduino IDE;
-- PlatformIO Arduino;
-- PlatformIO ESP-IDF.
-
-The Arduino targets use `EDP-Platform-Arduino`; the ESP-IDF target uses `EDP-Platform-ESP-IDF`. Those are demo/build selections only and do not alter the library dependency graph.
+Demo/build provider dependencies do not alter the library dependency graph.
 
 ## Development Status
 
-`EDP-Platform` is being rebuilt progressively from clean, narrowly-scoped contracts. Platform capabilities are added only when a consuming ESPressio domain has a concrete requirement for them.
+`EDP-Platform` is rebuilt progressively from narrow contracts justified by concrete consumers.
+
+The abstraction library does not pre-emptively accumulate SDK features.

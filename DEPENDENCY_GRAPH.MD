@@ -9,12 +9,14 @@ EDP-Platform
 
 ## Mandatory Dependencies
 
-- `EDP-System` — provides the Composition Framework used to declare Platform domains, capabilities, properties, providers, and requirements.
+- `EDP-System` — provides the Composition Framework used to declare Platform domains, capabilities, properties, providers and requirements.
 
 ## Optional Dependencies
 
-`EDP-Platform` currently has no optional ESPressio library dependencies.
+`EDP-Platform` has no optional ESPressio library dependencies.
 
-Concrete Platform implementations such as `EDP-Platform-Arduino` and `EDP-Platform-ESP-IDF` satisfy Platform capabilities for consuming applications; they are not dependencies of the abstraction library itself.
+This is an architectural invariant.
 
-The demo projects select target-appropriate concrete providers only as demo/build dependencies.
+Concrete Platform repositories satisfy `EDP-Platform` capabilities and higher ESPressio domains consume them. Neither relationship permits `EDP-Platform` to depend upward on those libraries.
+
+Demo projects may select concrete provider libraries as build-only dependencies; those demo dependencies do not alter this library dependency graph.

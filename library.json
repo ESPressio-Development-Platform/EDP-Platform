@@ -1,7 +1,7 @@
 {
   "name": "EDP-Platform",
-  "description": "Platform-neutral capability and concurrency contracts for the ESPressio Development Platform",
-  "keywords": "espressio,platform,capability,composition,concurrency,embedded,hal",
+  "description": "Platform-neutral capability contracts for the ESPressio Development Platform",
+  "keywords": "espressio,platform,capability,composition,concurrency,synchronization,execution,embedded,hal",
   "homepage": "https://espressio.org",
   "authors": {
     "name": "Simon J. Stuart",
