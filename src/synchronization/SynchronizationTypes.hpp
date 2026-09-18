@@ -65,11 +65,10 @@ namespace ESPressio::Platform::Synchronization {
     };
 
 
-    /// Outcome from attempting to acquire a spin lock without waiting.
-    enum class SpinLockTryAcquireResult : std::uint8_t {
+    /// Outcome from acquiring a spin lock in interrupt context.
+    enum class SpinLockAcquireResult : std::uint8_t {
         Acquired = 0,
-        Busy = 1,
-        UnsupportedInterruptContext = 2
+        UnsupportedInterruptContext = 1
     };
 
 

@@ -314,14 +314,14 @@ namespace ESPressio::Platform::Synchronization::Detail {
             "SpinLock provider must advertise SpinLockSupportsInterruptContext"
         );
 
-        /// Return type produced by non-blocking ordinary-context acquisition.
-        using TryAcquireResult = decltype(
-            std::declval<TSpinLockProvider&>().TryAcquire()
+        /// Return type produced by ordinary-context blocking acquisition.
+        using AcquireResult = decltype(
+            std::declval<TSpinLockProvider&>().Acquire()
         );
 
-        /// Return type produced by non-blocking interrupt-context acquisition.
-        using InterruptTryAcquireResult = decltype(
-            std::declval<TSpinLockProvider&>().TryAcquireFromInterrupt()
+        /// Return type produced by interrupt-context acquisition.
+        using InterruptAcquireResult = decltype(
+            std::declval<TSpinLockProvider&>().AcquireFromInterrupt()
         );
 
         /// Return type produced by ordinary-context release.
@@ -335,9 +335,13 @@ namespace ESPressio::Platform::Synchronization::Detail {
         );
 
         static_assert(
-            std::is_same_v<TryAcquireResult, SpinLockTryAcquireResult> &&
-            std::is_same_v<InterruptTryAcquireResult, SpinLockTryAcquireResult>,
-            "SpinLock try-acquisition methods must return SpinLockTryAcquireResult"
+            std::is_same_v<AcquireResult, void>,
+            "SpinLock Acquire must return void"
+        );
+
+        static_assert(
+            std::is_same_v<InterruptAcquireResult, SpinLockAcquireResult>,
+            "SpinLock AcquireFromInterrupt must return SpinLockAcquireResult"
         );
 
         static_assert(
