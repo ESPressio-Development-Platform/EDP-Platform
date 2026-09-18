@@ -324,10 +324,26 @@ namespace ESPressio::Platform::Synchronization::Detail {
             std::declval<TSpinLockProvider&>().TryAcquireFromInterrupt()
         );
 
+        /// Return type produced by ordinary-context release.
+        using ReleaseResult = decltype(
+            std::declval<TSpinLockProvider&>().Release()
+        );
+
+        /// Return type produced by interrupt-context release.
+        using InterruptReleaseResult = decltype(
+            std::declval<TSpinLockProvider&>().ReleaseFromInterrupt()
+        );
+
         static_assert(
             std::is_same_v<TryAcquireResult, SpinLockTryAcquireResult> &&
             std::is_same_v<InterruptTryAcquireResult, SpinLockTryAcquireResult>,
             "SpinLock try-acquisition methods must return SpinLockTryAcquireResult"
+        );
+
+        static_assert(
+            std::is_same_v<ReleaseResult, SpinLockReleaseResult> &&
+            std::is_same_v<InterruptReleaseResult, SpinLockReleaseResult>,
+            "SpinLock release methods must return SpinLockReleaseResult"
         );
 
     };

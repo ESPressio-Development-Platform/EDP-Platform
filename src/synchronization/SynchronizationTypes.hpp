@@ -72,4 +72,11 @@ namespace ESPressio::Platform::Synchronization {
         UnsupportedInterruptContext = 2
     };
 
+
+    /// Outcome from releasing a spin lock.
+    enum class SpinLockReleaseResult : std::uint8_t {
+        Released = 0,
+        UnsupportedInterruptContext = 1
+    };
+
 } // ESPressio::Platform::Synchronization
