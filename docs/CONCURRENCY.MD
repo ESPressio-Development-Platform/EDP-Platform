@@ -28,7 +28,7 @@
 
 The concurrency foundation supplies the smallest Platform-level mechanism currently required by higher ESPressio domains that publish read-mostly state across thread boundaries.
 
-The immediate consumer is the future synchronized Clock implementation. Its discipline state changes occasionally while `SynchronizedNow()` may be called frequently and concurrently from many execution contexts.
+A current consumer is `EDP-Clock`'s synchronized Clock implementation. Its discipline state changes occasionally while `SynchronizedNow()` may be called frequently and concurrently from many execution contexts.
 
 The design therefore optimizes for:
 
@@ -483,7 +483,7 @@ as a successfully validated snapshot.
 
 ## Synchronized Clock Integration
 
-The intended dependency path is:
+The current dependency path is:
 
 ```text
 EDP-System
@@ -493,10 +493,10 @@ EDP-Platform
     └── ConcurrentSnapshot
     ↓
 EDP-Clock
-    └── future SynchronizedClock
+    └── SynchronizedClock
 ```
 
-The future Clock discipline implementation can retain one compact plain state structure describing the current monotonic-to-synchronized mapping and publish that structure through `ConcurrentSnapshot`.
+The synchronized Clock discipline retains one compact plain state structure describing the current monotonic-to-synchronized mapping and publishes that structure through `ConcurrentSnapshot`.
 
 `SynchronizedNow()` can then:
 
@@ -512,24 +512,26 @@ The Clock implementation therefore does not need to carry a Platform mutex, Free
 
 ---
 
-## What This Tranche Does Not Contain
+## What the Concurrency Subsystem Does Not Own
 
-This tranche deliberately does not introduce:
+The concurrency subsystem remains deliberately narrow.
+
+It does not own:
 
 ```text
-Task abstraction
-Thread abstraction
-Mutex
-Semaphore
-Queue
-Event group
-Condition variable
-Critical-section abstraction
-Scheduler abstraction
-Delay/sleep abstraction
-ISR-safe synchronization contract
+Task or Thread semantics
+Mutex / RecursiveMutex / ReadWriteMutex
+CountingSemaphore
+Signal
+SpinLock
+Scheduler semantics
+Delay / sleep semantics
 64-bit atomic capability
-heap-backed synchronization object
+heap-backed synchronization objects
 ```
 
-Those facilities should be added only when an ESPressio domain demonstrates a concrete requirement for them.
+The lock, semaphore, signal, and spin-lock contracts that are now implemented by `EDP-Platform` belong to the separate [Synchronization](./SYNCHRONIZATION.MD) subsystem rather than to `ConcurrentSnapshot` or `AtomicWord32`.
+
+Higher Task, Thread, pooling, loop, precision-execution, and scheduler semantics remain outside `EDP-Platform` and belong to higher ESPressio domains such as `EDP-Threading`.
+
+`ConcurrentSnapshot` itself still claims only the thread/task concurrency semantics documented above. It does not claim a general ISR-safe publication contract.
