@@ -22,3 +22,5 @@ This is an architectural invariant.
 Concrete Platform repositories satisfy `EDP-Platform` capabilities and higher ESPressio domains consume them. Neither relationship permits `EDP-Platform` to depend upward on those libraries.
 
 Demo projects may select concrete provider libraries as build-only dependencies; those demo dependencies do not alter this library dependency graph.
+
+> Revalidated 2026-09-19: AtomicWord8 contract introduces no new ESPressio-library dependency.
