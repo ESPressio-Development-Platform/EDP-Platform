@@ -66,10 +66,12 @@ The Platform abstraction does not prescribe where those bytes physically reside.
 `ExecutionConfiguration` uses Platform-neutral vocabulary:
 
 ```text
-Priority
+Priority (Low / Normal / High / Critical)
 ProcessorAffinity
 Name
 ```
+
+`ExecutionPriority` is deliberately logical rather than a native scheduler number. Concrete providers map the four levels onto their native priority range. A native runtime with fewer useful levels may collapse adjacent logical levels; consumers must not infer a particular native numeric value.
 
 `ProcessorAffinity` is either:
 
