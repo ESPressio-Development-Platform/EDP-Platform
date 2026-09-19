@@ -177,6 +177,13 @@ int main() {
     ESPressio::Platform::Execution::ExecutionConfiguration configuration;
 
     assert(
+        configuration.Priority ==
+        ESPressio::Platform::Execution::ExecutionPriority::Normal
+    );
+
+    configuration.Priority = ESPressio::Platform::Execution::ExecutionPriority::Critical;
+
+    assert(
         provider.Initialize(
             storage,
             configuration,
