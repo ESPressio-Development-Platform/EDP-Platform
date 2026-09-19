@@ -30,7 +30,7 @@ If a proposed Platform abstraction appears to require `EDP-Memory`, `EDP-Clock`,
 
 The following Platform facilities are currently provided:
 
-- [Concurrency Foundation](./docs/CONCURRENCY.MD) — lock-free 32-bit atomic-word capability and fixed-storage `ConcurrentSnapshot`.
+- [Concurrency Foundation](./docs/CONCURRENCY.MD) — lock-free 8-bit and 32-bit atomic-word capabilities and fixed-storage `ConcurrentSnapshot`.
 - [Synchronization](./docs/SYNCHRONIZATION.MD) — mutex, recursive mutex, read/write mutex, counting semaphore, latched signal and spin-lock capability contracts.
 - [Execution Context](./docs/EXECUTION.MD) — caller-storage-backed native execution-context capability used by higher execution semantics.
 
