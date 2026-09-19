@@ -5,6 +5,15 @@
 
 namespace ESPressio::Platform::Execution {
 
+    /// Portable scheduler-preference levels for one execution context.
+    enum class ExecutionPriority : std::uint8_t {
+        Low = 0,
+        Normal = 1,
+        High = 2,
+        Critical = 3
+    };
+
+
     /// Selects whether an execution context may run on any processor or one requested processor.
     enum class ProcessorAffinityMode : std::uint8_t {
         Any = 0,
@@ -145,8 +154,8 @@ namespace ESPressio::Platform::Execution {
 
         // Scheduling configuration.
 
-        /// Provider-specific numeric priority expressed through a portable unsigned value.
-        std::uint32_t Priority = 0U;
+        /// Portable scheduler-preference level mapped by the concrete provider.
+        ExecutionPriority Priority = ExecutionPriority::Normal;
 
         /// Requested processor affinity.
         ProcessorAffinity Affinity = ProcessorAffinity::Any();
