@@ -9,6 +9,7 @@
 namespace ESPressio::Platform::Concurrency::Detail {
 
     /// Validates the complete compile-time contract required from an AtomicWord32 capability provider.
+    /// @tparam TAtomicWordProvider Concrete provider Type being validated against the AtomicWord32 capability contract.
     template<class TAtomicWordProvider>
     struct AtomicWord32ProviderTraits {
 
