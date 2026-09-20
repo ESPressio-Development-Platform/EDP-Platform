@@ -1,6 +1,6 @@
 # EDP-Platform Dependency Graph
 
-> Revalidated: 2026-09-19 — execution-priority contract alignment introduced no new ESPressio-library dependency.
+> Revalidated: 2026-09-20 — Threading-support audit retains only the portable execution-priority contract and introduces no new ESPressio-library dependency.
 
 ## Library Dependency Tree
 
@@ -22,5 +22,3 @@ This is an architectural invariant.
 Concrete Platform repositories satisfy `EDP-Platform` capabilities and higher ESPressio domains consume them. Neither relationship permits `EDP-Platform` to depend upward on those libraries.
 
 Demo projects may select concrete provider libraries as build-only dependencies; those demo dependencies do not alter this library dependency graph.
-
-> Revalidated 2026-09-19: AtomicWord8 contract introduces no new ESPressio-library dependency.
