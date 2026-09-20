@@ -71,6 +71,17 @@ namespace ESPressio::Platform::Execution {
             /// Zero-based processor index when the mode is Specific.
             std::uint32_t _processorIndex;
 
+
+            // Internal construction.
+
+            /// Creates a normalized processor-affinity request.
+            constexpr ProcessorAffinity(
+                ProcessorAffinityMode mode,
+                std::uint32_t processorIndex
+            ) noexcept :
+                _mode(mode),
+                _processorIndex(processorIndex) {}
+
         public:
 
             // Construction.
@@ -110,18 +121,6 @@ namespace ESPressio::Platform::Execution {
             constexpr bool IsAny() const noexcept {
                 return _mode == ProcessorAffinityMode::Any;
             }
-
-        private:
-
-            // Internal construction.
-
-            /// Creates a normalized processor-affinity request.
-            constexpr ProcessorAffinity(
-                ProcessorAffinityMode mode,
-                std::uint32_t processorIndex
-            ) noexcept :
-                _mode(mode),
-                _processorIndex(processorIndex) {}
 
     };
 
