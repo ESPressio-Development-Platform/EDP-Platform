@@ -10,6 +10,7 @@
 namespace ESPressio::Platform::Execution::Detail {
 
     /// Validates the complete compile-time contract required from an ExecutionContext provider.
+    /// @tparam TExecutionContextProvider Concrete provider Type being validated against the ExecutionContext capability contract.
     template<class TExecutionContextProvider>
     struct ExecutionContextProviderTraits {
 
