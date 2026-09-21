@@ -73,3 +73,9 @@ Demo/build provider dependencies do not alter the library dependency graph.
 `EDP-Platform` is rebuilt progressively from narrow contracts justified by concrete consumers.
 
 The abstraction library does not pre-emptively accumulate SDK features.
+
+## C++ Language Baseline
+
+ESPressio requires C++20. For PlatformIO-compatible ESP32 development, PIOArduino is the recommended platform baseline because it tracks a current Arduino-ESP32/ESP-IDF toolchain. Stock PlatformIO Core/IDE may still be used when projects explicitly select the PIOArduino platform package and compile as C++20.
+
+See the EDP-System C++20 toolchain documentation for the canonical configuration.
