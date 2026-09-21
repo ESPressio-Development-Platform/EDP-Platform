@@ -7,3 +7,7 @@
 Each logical demo provides Arduino IDE, PlatformIO Arduino and PlatformIO ESP-IDF-targeted surfaces.
 
 Concrete providers are demo/build selections only and do not change the `EDP-Platform` dependency graph.
+
+## C++ Language Baseline
+
+All PlatformIO-compatible demos require C++20 and select the maintained PIOArduino ESP32 platform package explicitly. PIOArduino is the recommended ESP32 PlatformIO-compatible environment for ESPressio.
