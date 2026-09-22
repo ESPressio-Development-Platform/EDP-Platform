@@ -1,6 +1,6 @@
 # EDP-Platform Dependency Graph
 
-> Revalidated: 2026-09-20 — Threading-support audit retains only the portable execution-priority contract and introduces no new ESPressio-library dependency.
+> Revalidated: 2026-09-22 — RandomByteSource capability and cryptographic-suitability property introduce no new ESPressio-library dependency.\n\n> Revalidated: 2026-09-20 — Threading-support audit retains only the portable execution-priority contract and introduces no new ESPressio-library dependency.
 
 ## Library Dependency Tree
 

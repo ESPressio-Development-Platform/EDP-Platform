@@ -52,3 +52,27 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
             -Werror
     )
 endif()
+
+
+add_executable(
+    randomness_contract_tests
+    randomness/RandomContractTests.cpp
+)
+
+target_include_directories(
+    randomness_contract_tests
+    PRIVATE
+        ../src
+        ${EDP_SYSTEM_SOURCE_DIR}/src
+)
+
+if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+    target_compile_options(
+        randomness_contract_tests
+        PRIVATE
+            -Wall
+            -Wextra
+            -Wpedantic
+            -Werror
+    )
+endif()

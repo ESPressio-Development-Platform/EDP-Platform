@@ -2,7 +2,7 @@
 
 - `concurrent-snapshot-basic` — coherent fixed-storage publication through `ConcurrentSnapshot`, using the Standard C++ `AtomicWord32` provider from `EDP-Platform-Portable`.
 - `synchronization-basic` — basic mutex and latched-signal use through the FreeRTOS concrete providers.
-- `execution-context-basic` — caller-supplied control/stack storage used to create, start, join and destroy one native execution context.
+- `execution-context-basic` — caller-supplied control/stack storage used to create, start, join and destroy one native execution context.\n- `random-byte-source-basic` — caller-owned random-byte output through the Platform RandomByteSource contract and cryptographic-suitability metadata.
 
 Each logical demo provides Arduino IDE, PlatformIO Arduino and PlatformIO ESP-IDF-targeted surfaces.
 
