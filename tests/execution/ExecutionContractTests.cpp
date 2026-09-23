@@ -12,7 +12,7 @@ namespace Test {
     /// Minimal caller-storage-backed execution provider used for contract validation.
     class ExecutionProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Execution::ExecutionContext,
                 Framework::PropertyValue<ESPressio::Platform::Execution::CallerSuppliedStorage, true>,

@@ -15,12 +15,12 @@ namespace ESPressio::Platform::Execution::Detail {
     struct ExecutionContextProviderTraits {
 
         static_assert(
-            TExecutionContextProvider::CompositionCapabilities::template Contains<ExecutionContext>,
+            TExecutionContextProvider::CompositionOffers::template Contains<ExecutionContext>,
             "ExecutionContext provider must supply the ExecutionContext capability"
         );
 
         /// Properties advertised for the ExecutionContext capability.
-        using Properties = typename TExecutionContextProvider::CompositionCapabilities::template PropertiesFor<ExecutionContext>;
+        using Properties = typename TExecutionContextProvider::CompositionOffers::template PropertiesFor<ExecutionContext>;
 
         static_assert(
             Properties::template Contains<CallerSuppliedStorage>,

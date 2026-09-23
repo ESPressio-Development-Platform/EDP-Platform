@@ -11,7 +11,7 @@ namespace Test {
     /// Minimal compile-time Mutex provider used to validate the Platform contract.
     class MutexProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Synchronization::Mutex,
                 Framework::PropertyValue<
@@ -57,7 +57,7 @@ namespace Test {
     /// Minimal compile-time RecursiveMutex provider used to validate the Platform contract.
     class RecursiveMutexProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Synchronization::RecursiveMutex,
                 Framework::PropertyValue<
@@ -103,7 +103,7 @@ namespace Test {
     /// Minimal compile-time ReadWriteMutex provider used to validate the Platform contract.
     class ReadWriteMutexProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Synchronization::ReadWriteMutex,
                 Framework::PropertyValue<
@@ -161,7 +161,7 @@ namespace Test {
     /// Minimal compile-time CountingSemaphore provider used to validate the Platform contract.
     class CountingSemaphoreProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Synchronization::CountingSemaphore,
                 Framework::PropertyValue<
@@ -224,7 +224,7 @@ namespace Test {
     /// Minimal compile-time Signal provider used to validate the Platform contract.
     class SignalProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Synchronization::Signal,
                 Framework::PropertyValue<
@@ -279,7 +279,7 @@ namespace Test {
     /// Minimal compile-time SpinLock provider used to validate the Platform contract.
     class SpinLockProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Synchronization::SpinLock,
                 Framework::PropertyValue<

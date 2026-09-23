@@ -17,14 +17,14 @@ namespace ESPressio::Platform::Randomness::Detail {
     struct RandomByteSourceProviderTraits {
 
         static_assert(
-            TRandomByteSourceProvider::CompositionCapabilities::template Contains<RandomByteSource>,
+            TRandomByteSourceProvider::CompositionOffers::template Contains<RandomByteSource>,
             "RandomByteSource provider must supply the RandomByteSource capability"
         );
 
         // Advertised capability metadata.
 
         /// Properties advertised for RandomByteSource.
-        using Properties = typename TRandomByteSourceProvider::CompositionCapabilities::template PropertiesFor<RandomByteSource>;
+        using Properties = typename TRandomByteSourceProvider::CompositionOffers::template PropertiesFor<RandomByteSource>;
 
         static_assert(
             Properties::template Contains<RandomByteSourceFeatures>,

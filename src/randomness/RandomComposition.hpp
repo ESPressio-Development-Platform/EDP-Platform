@@ -24,13 +24,18 @@ namespace ESPressio::Platform::Randomness {
     > {};
 
 
-    /// Requirement selecting a RandomByteSource suitable for cryptographic use.
-    using CryptographicRandomByteSourceNeed = Framework::Need<
+    /// Qualification requiring a RandomByteSource suitable for cryptographic use.
+    using CryptographicRandomByteSourceConstraint = Framework::HasAllFlags<
+        RandomByteSourceFeatures,
+        RandomByteSourceFeature::CryptographicallySuitable
+    >;
+
+    /// Standalone consumer Requirement selecting cryptographically suitable randomness.
+    using CryptographicRandomByteSourceRequirement = Framework::Requirement<
         RandomByteSource,
-        Framework::HasAllFlags<
-            RandomByteSourceFeatures,
-            RandomByteSourceFeature::CryptographicallySuitable
-        >
+        Framework::RequirementScope::AnyDomain,
+        Framework::AtLeastProviders<1U>,
+        CryptographicRandomByteSourceConstraint
     >;
 
 } // ESPressio::Platform::Randomness

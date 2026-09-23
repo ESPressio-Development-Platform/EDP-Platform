@@ -10,7 +10,7 @@ namespace Example {
     /// Example application provider satisfying the Platform AtomicWord32 capability.
     class AtomicProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Concurrency::AtomicWord32,
                 Framework::PropertyValue<ESPressio::Platform::Concurrency::LockFree, true>,
