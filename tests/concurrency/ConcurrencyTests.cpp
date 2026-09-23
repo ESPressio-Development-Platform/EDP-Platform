@@ -13,7 +13,7 @@ namespace ESPressio::Platform::Concurrency::Tests {
     /// Host-test provider satisfying the AtomicWord32 Platform capability.
     class TestAtomicWord32Provider final : public Framework::Provider<
         Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 AtomicWord32,
                 Framework::PropertyValue<LockFree, true>,
@@ -173,7 +173,7 @@ int main() {
     using namespace ESPressio::Platform::Concurrency::Tests;
 
     using Provider = TestAtomicWord32Provider;
-    using Properties = typename Provider::CompositionCapabilities::template PropertiesFor<AtomicWord32>;
+    using Properties = typename Provider::CompositionOffers::template PropertiesFor<AtomicWord32>;
 
     static_assert(Properties::template Contains<LockFree>);
     static_assert(Properties::template Value<LockFree>);

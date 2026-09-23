@@ -38,12 +38,12 @@ namespace ESPressio::Platform::Synchronization::Detail {
     struct MutexProviderTraits : SynchronizationObjectTraits<TMutexProvider> {
 
         static_assert(
-            TMutexProvider::CompositionCapabilities::template Contains<Mutex>,
+            TMutexProvider::CompositionOffers::template Contains<Mutex>,
             "Mutex provider must supply the Mutex capability"
         );
 
         /// Properties advertised for the Mutex capability.
-        using Properties = typename TMutexProvider::CompositionCapabilities::template PropertiesFor<Mutex>;
+        using Properties = typename TMutexProvider::CompositionOffers::template PropertiesFor<Mutex>;
 
         static_assert(
             Properties::template Contains<MutexWaitResolutionNanoseconds>,
@@ -85,12 +85,12 @@ namespace ESPressio::Platform::Synchronization::Detail {
     struct RecursiveMutexProviderTraits : SynchronizationObjectTraits<TRecursiveMutexProvider> {
 
         static_assert(
-            TRecursiveMutexProvider::CompositionCapabilities::template Contains<RecursiveMutex>,
+            TRecursiveMutexProvider::CompositionOffers::template Contains<RecursiveMutex>,
             "RecursiveMutex provider must supply the RecursiveMutex capability"
         );
 
         /// Properties advertised for the RecursiveMutex capability.
-        using Properties = typename TRecursiveMutexProvider::CompositionCapabilities::template PropertiesFor<RecursiveMutex>;
+        using Properties = typename TRecursiveMutexProvider::CompositionOffers::template PropertiesFor<RecursiveMutex>;
 
         static_assert(
             Properties::template Contains<RecursiveMutexWaitResolutionNanoseconds>,
@@ -127,12 +127,12 @@ namespace ESPressio::Platform::Synchronization::Detail {
     struct ReadWriteMutexProviderTraits : SynchronizationObjectTraits<TReadWriteMutexProvider> {
 
         static_assert(
-            TReadWriteMutexProvider::CompositionCapabilities::template Contains<ReadWriteMutex>,
+            TReadWriteMutexProvider::CompositionOffers::template Contains<ReadWriteMutex>,
             "ReadWriteMutex provider must supply the ReadWriteMutex capability"
         );
 
         /// Properties advertised for the ReadWriteMutex capability.
-        using Properties = typename TReadWriteMutexProvider::CompositionCapabilities::template PropertiesFor<ReadWriteMutex>;
+        using Properties = typename TReadWriteMutexProvider::CompositionOffers::template PropertiesFor<ReadWriteMutex>;
 
         static_assert(
             Properties::template Contains<ReadWriteMutexWaitResolutionNanoseconds>,
@@ -183,12 +183,12 @@ namespace ESPressio::Platform::Synchronization::Detail {
     struct CountingSemaphoreProviderTraits : SynchronizationObjectTraits<TCountingSemaphoreProvider> {
 
         static_assert(
-            TCountingSemaphoreProvider::CompositionCapabilities::template Contains<CountingSemaphore>,
+            TCountingSemaphoreProvider::CompositionOffers::template Contains<CountingSemaphore>,
             "CountingSemaphore provider must supply the CountingSemaphore capability"
         );
 
         /// Properties advertised for the CountingSemaphore capability.
-        using Properties = typename TCountingSemaphoreProvider::CompositionCapabilities::template PropertiesFor<CountingSemaphore>;
+        using Properties = typename TCountingSemaphoreProvider::CompositionOffers::template PropertiesFor<CountingSemaphore>;
 
         static_assert(
             Properties::template Contains<CountingSemaphoreWaitResolutionNanoseconds>,
@@ -249,12 +249,12 @@ namespace ESPressio::Platform::Synchronization::Detail {
     struct SignalProviderTraits : SynchronizationObjectTraits<TSignalProvider> {
 
         static_assert(
-            TSignalProvider::CompositionCapabilities::template Contains<Signal>,
+            TSignalProvider::CompositionOffers::template Contains<Signal>,
             "Signal provider must supply the Signal capability"
         );
 
         /// Properties advertised for the Signal capability.
-        using Properties = typename TSignalProvider::CompositionCapabilities::template PropertiesFor<Signal>;
+        using Properties = typename TSignalProvider::CompositionOffers::template PropertiesFor<Signal>;
 
         static_assert(
             Properties::template Contains<SignalWaitResolutionNanoseconds>,
@@ -302,12 +302,12 @@ namespace ESPressio::Platform::Synchronization::Detail {
     struct SpinLockProviderTraits : SynchronizationObjectTraits<TSpinLockProvider> {
 
         static_assert(
-            TSpinLockProvider::CompositionCapabilities::template Contains<SpinLock>,
+            TSpinLockProvider::CompositionOffers::template Contains<SpinLock>,
             "SpinLock provider must supply the SpinLock capability"
         );
 
         /// Properties advertised for the SpinLock capability.
-        using Properties = typename TSpinLockProvider::CompositionCapabilities::template PropertiesFor<SpinLock>;
+        using Properties = typename TSpinLockProvider::CompositionOffers::template PropertiesFor<SpinLock>;
 
         static_assert(
             Properties::template Contains<SpinLockSupportsInterruptContext>,

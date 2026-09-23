@@ -10,7 +10,7 @@ namespace Demo {
     /// Minimal example provider demonstrating the Platform random-byte contract.
     class ExampleRandomProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Randomness::RandomByteSource,
                 Framework::FlagPropertyValue<

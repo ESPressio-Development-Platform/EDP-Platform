@@ -14,7 +14,7 @@ Every provider advertises `RandomByteSourceFeatures`. The currently defined feat
 
 - `CryptographicallySuitable` — the provider is suitable for security-sensitive unpredictable-byte generation according to the guarantees documented by its concrete implementation.
 
-Consumers requiring cryptographic randomness use `CryptographicRandomByteSourceNeed`, allowing Composition to reject providers that do not advertise this feature.
+Standalone consumers requiring cryptographic randomness use `CryptographicRandomByteSourceRequirement`. Provider Contracts in other Domains reuse `CryptographicRandomByteSourceConstraint` inside an explicitly `ExternalDomain` Requirement, so qualification and dependency scope remain separate.
 
 The feature vocabulary is owned by Platform. Higher domains must not introduce reverse dependencies merely to describe suitability.
 

@@ -11,7 +11,7 @@ namespace Test {
     /// Deterministic test provider used only to exercise the RandomByteSource contract.
     class TestRandomProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Randomness::RandomByteSource,
                 Framework::FlagPropertyValue<

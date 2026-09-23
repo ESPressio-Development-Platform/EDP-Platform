@@ -14,14 +14,14 @@ namespace ESPressio::Platform::Concurrency::Detail {
     struct AtomicWord32ProviderTraits {
 
         static_assert(
-            TAtomicWordProvider::CompositionCapabilities::template Contains<AtomicWord32>,
+            TAtomicWordProvider::CompositionOffers::template Contains<AtomicWord32>,
             "AtomicWord32 provider must supply the AtomicWord32 capability"
         );
 
         // Provider metadata.
 
         /// Properties advertised for the AtomicWord32 capability.
-        using Properties = typename TAtomicWordProvider::CompositionCapabilities::template PropertiesFor<AtomicWord32>;
+        using Properties = typename TAtomicWordProvider::CompositionOffers::template PropertiesFor<AtomicWord32>;
 
         static_assert(
             Properties::template Contains<LockFree>,
