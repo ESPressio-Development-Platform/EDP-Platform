@@ -268,7 +268,7 @@ When publishing:
 
 The generation change is the publication boundary.
 
-All relaxed writes performed before the release store become visible to a reader that acquires the published generation.
+Every buffer word uses StoreRelease. The generation release publishes the completed buffer; acquiring a word from later buffer reuse also imports the publication preceding that reuse, forcing a later generation check to reject an older identity.
 
 There is no writer-side heap allocation, mutex, semaphore, task interaction, or callback.
 
@@ -281,7 +281,7 @@ A reader performs:
 ```text
 1. acquire current publication generation
 2. select the active buffer
-3. copy every atomic word using relaxed loads
+3. copy every atomic word using acquire loads
 4. acquire publication generation again
 5. if the generation is unchanged, decode and return
 6. otherwise retry
@@ -317,7 +317,7 @@ If the writer cannot run while the reader spins, the system has created a priori
 
 The writer never invalidates the currently published buffer while preparing the next state. Readers may continue consuming the last published state while the writer is pre-empted indefinitely.
 
-Only a completed publication changes the generation.
+Only a completed publication changes the logical published identity; an in-progress rollover marker still denotes the preceding published buffer.
 
 This property is particularly useful for Clock reads, where obtaining the last coherent mapping is better than depending on a lower-priority synchronization-update task being scheduled.
 
@@ -325,23 +325,25 @@ This property is particularly useful for Clock reads, where obtaining the last c
 
 ## Generation Rollover
 
-The logical publication generation is 64 bits, but it is represented using two lock-free 32-bit atomic words.
+The two metadata words encode a 63-bit logical generation: 31 high epoch bits
+and 32 low bits. The high word's top bit is a transient rollover marker, not an
+additional public generation bit or an atomic 64-bit operation.
 
-The low word is the release/acquire publication token.
+After filling the inactive buffer, low-word rollover publishes the old high epoch
+with its marker set, releases low zero, then releases the incremented high epoch
+with the marker cleared. Until that final release, a reader normalizes a stable
+marker to the previous `(oldHigh, UINT32_MAX)` publication in buffer1. That buffer
+is not reused during the transition. A writer paused at either step therefore
+leaves a coherent old publication available; readers do not wait for it.
 
-On low-word rollover:
+Generation reads acquire high, low and high again, retrying if high changes.
+Ordinary publication still releases the new low word after all buffer words are
+written. A full `2^63` publication cycle during one read is outside this finite
+identity contract. No counter width can remove an unbounded ABA horizon.
 
-```text
-write next state buffer
-store new high generation word (relaxed)
-store wrapped low generation word (release)
-```
-
-A reader acquires the low word before reading the high word. Once the wrapped low value is observed, the preceding high-word update and buffer writes are also visible.
-
-The logical generation therefore does not repeat until `2^64` completed publications.
-
-No lock-free 64-bit atomic operation is required.
+The stored object geometry remains two buffers plus two four-byte words. There is
+no new lock, ownership CAS, heap, task or SDK dependency. See the
+[H471 ordering and rollover proof](H471-SNAPSHOT-ORDERING-PROOF.MD).
 
 ---
 
@@ -365,7 +367,7 @@ For a state occupying `N` 32-bit words, the snapshot retains:
 
 ```text
 2 × N atomic words for state buffers
-2 atomic words for the 64-bit logical publication generation
+2 atomic words for the 63-bit logical generation and rollover marker
 ```
 
 Therefore the atomic storage requirement is:

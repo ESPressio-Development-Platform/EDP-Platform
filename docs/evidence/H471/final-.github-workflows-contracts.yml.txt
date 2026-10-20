@@ -1,0 +1,31 @@
+name: Platform concurrency and contracts
+on:
+  push:
+    paths: [src/**, tests/**, .github/workflows/contracts.yml]
+  pull_request:
+    paths: [src/**, tests/**, .github/workflows/contracts.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [g++, clang++]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: EDP-Platform
+      - uses: actions/checkout@v4
+        with:
+          repository: ESPressio-Development-Platform/EDP-System
+          ref: c69d4b082db5dc5227cd332f4578a067ad64f662
+          path: EDP-System
+          token: ${{ secrets.EDP_REPOSITORY_READ_TOKEN || github.token }}
+      - name: Configure assertion-enabled Release contracts
+        run: cmake -S EDP-Platform/tests -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=${{ matrix.compiler }} -DEDP_SYSTEM_SOURCE_DIR=${{ github.workspace }}/EDP-System
+      - name: Build all five owning contracts
+        run: cmake --build build -j 2
+      - name: Execute all owning contracts and rollover regressions
+        run: ctest --test-dir build --output-on-failure

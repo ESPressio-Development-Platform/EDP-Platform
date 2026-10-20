@@ -1,0 +1,69 @@
+from pathlib import Path
+import subprocess,json,hashlib,os,sys,shlex,re,tempfile,shutil,struct
+from elftools.elf.elffile import ELFFile
+r=Path('/srv/espressio/repos');labs=r/'EDP-Labs/Mesh-Concurrency-Qualification';app=labs/'H447-Native-Qualified-Local-Self-Grant';clock=r/'EDP-Clock';mode=sys.argv[1]
+def run(cmd,**kw):print('H470_H471_NATIVE',mode,cmd,flush=True);subprocess.run(cmd,check=True,**kw)
+def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def snapshot(extra):
+ rows={};pins=json.loads((app/'reviewed-native-dependencies.json').read_text())
+ for name in pins:
+  files=subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z','--','src'],cwd=r/name).decode().split('\0')
+  for rel in set(files):
+   if rel and (r/name/rel).is_file():rows[name+'/'+rel]=sha(r/name/rel)
+ for p in extra:rows[str(p.relative_to(r))]=sha(p)
+ return rows
+if mode=='demos':
+ demo=clock/'demos/monotonic-correlation-projection-basic';extra=[p for p in demo.rglob('*') if p.is_file() and '.pio' not in p.parts and not p.name.startswith('sdkconfig')];before=snapshot(extra)
+ headers=[demo/f/'Example.hpp' for f in ['Arduino_IDE','PlatformIO_ESP-IDF/src','PlatformIO_Arduino/src']];assert len(set(p.read_bytes() for p in headers))==1
+ with tempfile.TemporaryDirectory(prefix='h470-demo-host-') as temp:
+  source=Path(temp)/'model.cpp';source.write_text('#include "'+str(headers[0])+'"\nint main(){MonotonicProjectionModel::Run();}\n')
+  for cc in ['g++','clang++']:
+   exe=Path(temp)/cc.replace('+','p');run([cc,'-std=c++20','-Wall','-Wextra','-Werror','-pedantic','-I'+str(clock/'src'),str(source),'-o',str(exe)]);p=subprocess.run([str(exe)],text=True,capture_output=True);assert p.returncode==0 and 'status=0' in p.stdout and 'uncertainty_ns=748512' in p.stdout;print(p.stdout,end='')
+ for form in ['PlatformIO_ESP-IDF','PlatformIO_Arduino']:run(['/srv/espressio/bin/pio','run','--project-dir',str(demo/form)])
+ after=snapshot(extra);assert before==after
+ Path('/srv/espressio/scratch/H470-NATIVE-DEMO-SOURCE-BASIS.json').write_text(json.dumps({'before':before,'after':after,'equal':True,'native_targets':4,'three_forms_identical':True,'host_model_compilers':['g++','clang++'],'standalone_ide_run':False,'hardware':False},indent=2)+'\n')
+ print('H470_NUMERIC_MODEL_DEMO_BOTH_HOST_COMPILERS_FOUR_NATIVE_TARGETS_PASS|hardware=0',flush=True)
+elif mode=='compositions':
+ extra=[p for f in ['PlatformIO_ESP-IDF/src','PlatformIO_Arduino/src','Arduino_IDE'] for p in (app/f).glob('*') if p.is_file()]+[labs/'H436-Actual-Canonical-NRF-Voter-Clock/src/main.cpp'];before=snapshot(extra)
+ for form in ['PlatformIO_ESP-IDF','PlatformIO_Arduino']:run(['/srv/espressio/bin/pio','run','--project-dir',str(app/form)])
+ canonical=labs/'H436-Actual-Canonical-NRF-Voter-Clock';run(['/srv/espressio/bin/pio','run','--project-dir',str(canonical)],env={**os.environ,'EDP_H436_PRIVATE_DIR':'/srv/espressio/scratch/H446-private-device-pair-keys'})
+ after=snapshot(extra);assert before==after
+ Path('/srv/espressio/scratch/H471-NATIVE-COMPOSITION-SOURCE-BASIS.json').write_text(json.dumps({'before':before,'after':after,'equal':True,'native_targets':6,'hardware':False,'consumed_images_compile_only_never_flash':True},indent=2)+'\n')
+ rows=[]
+ def facts(obj,nm):
+  symbols=subprocess.check_output([str(nm),'-C',str(obj)],text=True);assert all(x in symbols for x in ['CompileSnapshotRead','CompileSnapshotPublish','SnapshotFacts']);assert not re.search(r'__atomic_(?:load|store|exchange|compare_exchange|fetch_add|fetch_sub)_8\\b',symbols)
+  with obj.open('rb') as stream:
+   elf=ELFFile(stream);assert elf.little_endian;table=elf.get_section_by_name('.symtab');items=[s for s in table.iter_symbols() if 'SnapshotFacts' in s.name];assert len(items)==1;s=items[0];section=elf.get_section(s['st_shndx']);offset=s['st_value']-section['sh_addr'];raw=section.data()[offset:offset+s['st_size']];assert len(raw)==40;layout=list(struct.unpack('<5Q',raw));assert layout==[32,72,72,4,4]
+  return {'sha256':sha(obj),'facts':layout,'global_functions':[line for line in symbols.splitlines() if any(v in line for v in ['CompileSnapshotRead','CompileSnapshotPublish'])],'atomic_64_helpers':False}
+ with tempfile.TemporaryDirectory(prefix='h471-native-old-snapshot-') as temp:
+  for form in ['PlatformIO_ESP-IDF','PlatformIO_Arduino']:
+   project=app/form
+   for env,chip in [('esp32dev','esp32'),('esp32s3','esp32s3')]:
+    obj=project/'.pio/build'/env/'src/NativeSnapshotCompile.cpp.o';assert obj.is_file(),obj
+    tool=Path('/srv/espressio/cache/platformio/core/packages/toolchain-xtensa-esp-elf/bin');nm=tool/('xtensa-'+chip+'-elf-nm');current=facts(obj,nm)
+    # Obtain the real target compile command; preserve/remove only this generated database.
+    database=project/'compile_commands.json';saved=database.read_bytes() if database.exists() else None
+    run(['/srv/espressio/bin/pio','run','--project-dir',str(project),'-e',env,'-t','compiledb'])
+    db=json.loads(database.read_text());matches=[x for x in db if Path(x['file']).name=='NativeSnapshotCompile.cpp'];assert len(matches)==1;entry=matches[0];command=entry.get('arguments') or shlex.split(entry['command'])
+    if saved is None:database.unlink()
+    else:database.write_bytes(saved)
+    cleaned=[];i=0
+    while i<len(command):
+     arg=command[i]
+     if arg in ['-o','-MF','-MT','-MQ']:i+=2;continue
+     if arg in ['-MMD','-MD'] or any(arg.startswith(v) and len(arg)>len(v) for v in ['-MF','-MT','-MQ']):i+=1;continue
+     if arg.startswith('-o') and len(arg)>2:i+=1;continue
+     cleaned.append(arg);i+=1
+    overlay='/srv/espressio/scratch/H471-before/src';index=2 if Path(cleaned[0]).name=='ccache' else 1;cleaned.insert(index,'-I'+overlay);old=Path(temp)/(form+'-'+env+'.o');cleaned+=['-H','-o',str(old)]
+    v=subprocess.run(cleaned,cwd=entry['directory'],text=True,capture_output=True);assert v.returncode==0,v.stderr
+    assert overlay+'/concurrency/ConcurrentSnapshot.hpp' in v.stderr
+    prior=facts(old,nm);assert prior['facts']==current['facts'];rows.append({'form':form,'target':env,'current':current,'before':prior,'compiler_include_trace_selected_before_header':True,'before_command':cleaned,'hardware':False})
+ Path('/srv/espressio/scratch/H471-NATIVE-BEFORE-AFTER-LAYOUT.json').write_text(json.dumps(rows,indent=2)+'\n')
+ private=Path('/srv/espressio/evidence/H471-canonical-callback-placement');private.mkdir(mode=0o700,exist_ok=False);placements={}
+ for env,chip in [('esp32dev','esp32'),('esp32s3','esp32s3')]:
+  image=private/(env+'-firmware.elf');shutil.copyfile(canonical/'.pio/build'/env/'firmware.elf',image)
+  cmd=[sys.executable,str(canonical/'validate_irq_clock_elf.py'),'--elf',str(image),'--objdump','/srv/espressio/cache/platformio/core/packages/toolchain-xtensa-esp-elf/bin/xtensa-'+chip+'-elf-objdump','--sdk-root','/srv/espressio/cache/platformio/core/packages/framework-espidf','--sdk-bindings',str(canonical/'qualified-sdk-clock-binding.json')]
+  v=subprocess.run(cmd,text=True,capture_output=True);print(v.stdout,end='');assert v.returncode==0,v.stderr;placements[env]={'elf_sha256':sha(image),'exit':v.returncode,'stdout':v.stdout,'hardware':False}
+ Path('/srv/espressio/scratch/H471-CANONICAL-PLACEMENT.json').write_text(json.dumps(placements,indent=2)+'\n')
+ print('H471_SIX_NATIVE_COMPOSITIONS_FOUR_OLD_NEW_LAYOUTS_AND_CANONICAL_CALLBACK_PASS|state=32|snapshot=72|hardware=0|full_isr=0',flush=True)
+else:raise SystemExit('Unknown native mode')

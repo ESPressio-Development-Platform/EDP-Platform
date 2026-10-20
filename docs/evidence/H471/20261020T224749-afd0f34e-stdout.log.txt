@@ -1,0 +1,301 @@
+H460_CAUSAL_EVENT_GROUND_TRUTH_CONTAINMENT_PASS|cases=420175|clocks=MODEL|hardware=0
+H394_CERTIFIED_WORKER_NO_UNGUARDED_ROOT_EGRESS_PASS
+H391_F12_ONE_SHOT_GUARDED_REFERENCE_ACTIVATION_HOST_PASS_NOT_PHYSICAL_QUORUM
+H424_TWO_SIGNED_P256_WITNESSES_CANNOT_CERTIFY_CLOCK_RECEIVER_PASS
+H414_RECEIVER_SCOPE_FENCE_HOST_PASS|NOT_AUTHORITY_CERTIFICATION
+H428_MANDATORY_RECEIVER_FENCE_NO_LOCAL_ROOT_PASS
+H340_PASS real ElectionJournal+lease stage, no vote ACK
+H358_LOCAL_SELF_VOTE_DURABLE_NONAUTHORISING_PASS
+H342_AUTHENTICATED_MEMBER_JOURNAL_FENCE_PASS (NO VOTE ACK)
+H344_REAL_ENGINE_WORKER_DURABLE_STAGE_PASS (TEST SECURITY, NO ACK)
+H353_WORKER_SINGLE_DECRYPT_TWO_CLAIMS_PASS (FAKE SECURITY; NO AUTHORITY)
+H366_WORKER_AUTHENTICATED_PEER_SIGNED_TWO_CLAIMS_PASS_FAKE_SECURITY_NO_DURABILITY_NO_CLOCK_AUTHORITY
+H417_SCOPED_DURABLE_VOTER_JOURNAL_HOST_PASS|NO_CLOCK_AUTHORITY
+H418_SCOPE_V2_REQUEST_CODEC_STRICT_LEGACY_DENY_PASS
+H418_AUTHENTICATED_SCOPE_V2_TO_DURABLE_H417_VOTER_PASS|FAKE_SECURITY_NO_CLOCK_AUTHORITY
+H421_TRUE_WORKER_SCOPED_P256_CLAIMS_FAKE_SECURITY_PASS|NO_ROOT
+H450_ENGINE_REMOTE_THEN_SELF_COMPOSITION_PASS|case=0|mock_signs=1|NO_AUTHORITY
+H421_REAL_ENGINE_DIRECT_ASSOC_SCOPED_P256_WORKER_PASS|FAKE_AEAD_NOT_ROOT
+H450_ENGINE_REMOTE_THEN_SELF_COMPOSITION_PASS|case=1|mock_signs=0|NO_AUTHORITY
+H421_REAL_ENGINE_DIRECT_ASSOC_SCOPED_P256_WORKER_PASS|FAKE_AEAD_NOT_ROOT
+H450_ENGINE_REMOTE_THEN_SELF_COMPOSITION_PASS|case=2|mock_signs=1|NO_AUTHORITY
+H421_REAL_ENGINE_DIRECT_ASSOC_SCOPED_P256_WORKER_PASS|FAKE_AEAD_NOT_ROOT
+H417_SCOPED_VOTE_AND_SIGNED_OUTBOX_HOST_PASS|MOCK_P256_NOT_AUTHORITY
+H371_CANDIDATE_TWO_SIGNED_WITNESSES_NVS_FAKE_REBOOT_CORRUPT_LOSS_STALE_TERM_PASS_NO_AUTHORITY
+H374_CANDIDATE_WORKER_B_PLUS_C_PERSISTED_FAKE_NVS_PASS_NO_RADIO_NO_CLOCK_AUTHORITY
+H420_SCOPE448_DURABLE_TWO_SIGNED_V2_HOST_PASS|MOCK_P256_NOT_ROOT
+H422_TYPED_LOCAL_OUTBOX_REMOTE_CLAIM_DURABLE_PAIR_HOST_PASS|FAKE_SIGNER|NO_ROOT
+H440_REAL_LOCAL_VOTER_OUTBOX_CANDIDATE_BRIDGE_PASS|storage_crypto=MOCK|authority=0
+H440_REAL_LOCAL_SOURCE_ONCE_FIELDS_REBOOT_SIGNATURE_AND_READBACK_FAILURES_PASS|storage_crypto=MOCK|authority=0
+H423_SCOPED_SIGNED_CERTIFICATE_EVIDENCE_MOCK_P256_PASS_NOT_AUTHORITY
+H425_PINNED_2_OF_3_SIGNED_P256_QUORUM_INTERSECTS_NOT_AUTHORITY_PASS
+H427_NUMERICAL_EARLIEST_VOTER_EXPIRY_NOT_AUTHORITY_PASS
+H426_CONSERVATIVE_VOTER_CLOCK_BOUND_NOT_AUTHORITY_PASS
+H375_EDP_CLOCK_INHERITED_ERA_CORRELATION_WITH_UNCERTAINTY_AND_HOLDOVER_BOUNDS_PASS_NOT_AUTHORITY
+H376_CANONICAL_REFERENCE_SELF_FENCE_NO_RENEW_NO_RESURRECTION_HOST_PASS_NOT_QUORUM_NOT_PHYSICAL
+H380_F12_OLD_ROOT_CONSERVATIVE_WAIT_NONAUTHORISING_PASS
+H367_DURABLE_SIGNED_OUTBOX_FAKE_NVS_READBACK_ONCE_REBOOT_TAMPER_PASS_NO_RF_NO_CLOCK_AUTHORITY
+H416_DURABLE_SIGNED_OUTBOX_FAKE_NVS_READBACK_ONCE_REBOOT_TAMPER_PASS_NO_RF_NO_CLOCK_AUTHORITY
+H451_ACTUAL_RECORDED_FENCE_SIGNED_LOCAL_DEADLINE_STRICT_PROVIDER_BUDGET_PASS|clock=MODEL|authority=0
+H448_SCOPED_EXACT_CONTEXT_NO_DOWNGRADE_AND_FENCE_PASS|clock=MODEL|authority=0
+H369_CANONICAL_EDP_CLOCK_COMMITTED_GRANT_EGRESS_GATE_PASS_NO_ELECTION_AUTHORITY
+H451_BOUNDED_SCOPE_TRANSPORT_PASS|case=0|provider_bound_ns=500000000|mock_outbox=1|protect=1|provider_calls=1|authority=0
+H451_BOUNDED_SCOPE_TRANSPORT_PASS|case=1|provider_bound_ns=500000000|mock_outbox=1|protect=0|provider_calls=0|authority=0
+H451_BOUNDED_SCOPE_TRANSPORT_PASS|case=2|provider_bound_ns=500000000|mock_outbox=1|protect=1|provider_calls=0|authority=0
+H451_BOUNDED_SCOPE_TRANSPORT_PASS|case=3|provider_bound_ns=500000000|mock_outbox=0|protect=0|provider_calls=0|authority=0
+H451_BOUNDED_SCOPE_TRANSPORT_PASS|case=0|provider_bound_ns=2000000000|mock_outbox=0|protect=0|provider_calls=0|authority=0
+H451_BOUNDED_SCOPE_TRANSPORT_PASS|case=0|provider_bound_ns=18446744073709551615|mock_outbox=0|protect=0|provider_calls=0|authority=0
+H451_UNKNOWN_PROVIDER_BOUND_REFUSED_BEFORE_SOURCE_OR_COUNTER_PASS|radio=MOCK|authority=0
+H368_BOUNDED_SIGNED_GRANT_RADIO_FAKE_PROVIDER_LIFECYCLE_PASS_NO_RF_NO_CLOCK_AUTHORITY
+H448_SCOPED_GUARDS_WIRE_OWNERSHIP_SHARED_ATTEMPTS_PASS|storage_crypto_radio_eligibility=MOCK|authority=0
+H370_SIGNED_B_C_FULL_WITNESSES_FAKE_CRYPTO_PASS_NO_DURABILITY_NO_CLOCK_AUTHORITY
+H341_ELECTION_REQUEST_WIRE_AND_SECURITY_CONTRACT_PASS (FAKE SECURITY, NO LIVE ELECTION)
+H351_ELECTION_GRANT_WIRE_AND_SECURITY_CONTRACT_PASS (FAKE SECURITY, NO ACK)
+H352_GRANT_DISTINCT_CLAIMS_PASS (2 CLAIMS, NO CERTIFICATE OR AUTHORITY)
+H360_CANONICAL_SIGNED_GRANT_CONTEXT_BOUND_FAKE_CRYPTO_ONLY_NOT_CLOCK_AUTHORITY_PASS
+H415_SCOPED_SIGNED_GRANT_V2_CONTEXT_FENCE_HOST_PASS|FAKE_SIGNATURE_ONLY|NOT_CLOCK_AUTHORITY
+H416_SCOPED_SIGNED_GRANT_SINGLE_UNPROTECT_SOURCE_AND_VERSION_BOUND_PASS_FAKE_SECURITY
+H352_AUTHENTICATED_ELECTION_ONE_UNPROTECT_REQUEST_OR_GRANT_PASS
+H340_PASS boot and same-term voter grant fencing
+H369_EDP_CLOCK_RECORDED_GRANT_EGRESS_FENCE_PASS_NO_CLOCK_AUTHORITY
+H340_PASS candidate window / storage / clock fault latching
+H340_PASS 81 canonical-Clock bound scenarios (external quorum assumed)
+H340_NEUTRAL_ELECTION_LEASE_FENCE_PASS (NOT LIVE ELECTION)
+H431_MONOTONIC_SHARED_EXCHANGE_PASS|security_fixture=mock|authority=0
+H432_ACTUAL_ENGINE_TYPED_ANCHOR_PASS|security_random=MOCK|authority=0
+H434_WORKER_RADIO_MOCK_REGRESSION_PASS|authority=0|rf=0
+H437_CONTROL_SHARED_OWNERSHIP_AND_WIRE_COMPATIBILITY_MOCK_PASS|authority=0|rf=0
+H460_CAUSAL_EVENT_GROUND_TRUTH_CONTAINMENT_PASS|cases=420175|clocks=MODEL|hardware=0
+H394_CERTIFIED_WORKER_NO_UNGUARDED_ROOT_EGRESS_PASS
+H391_F12_ONE_SHOT_GUARDED_REFERENCE_ACTIVATION_HOST_PASS_NOT_PHYSICAL_QUORUM
+H424_TWO_SIGNED_P256_WITNESSES_CANNOT_CERTIFY_CLOCK_RECEIVER_PASS
+H414_RECEIVER_SCOPE_FENCE_HOST_PASS|NOT_AUTHORITY_CERTIFICATION
+H428_MANDATORY_RECEIVER_FENCE_NO_LOCAL_ROOT_PASS
+H340_PASS real ElectionJournal+lease stage, no vote ACK
+H358_LOCAL_SELF_VOTE_DURABLE_NONAUTHORISING_PASS
+H342_AUTHENTICATED_MEMBER_JOURNAL_FENCE_PASS (NO VOTE ACK)
+H344_REAL_ENGINE_WORKER_DURABLE_STAGE_PASS (TEST SECURITY, NO ACK)
+H353_WORKER_SINGLE_DECRYPT_TWO_CLAIMS_PASS (FAKE SECURITY; NO AUTHORITY)
+H366_WORKER_AUTHENTICATED_PEER_SIGNED_TWO_CLAIMS_PASS_FAKE_SECURITY_NO_DURABILITY_NO_CLOCK_AUTHORITY
+H417_SCOPED_DURABLE_VOTER_JOURNAL_HOST_PASS|NO_CLOCK_AUTHORITY
+H418_SCOPE_V2_REQUEST_CODEC_STRICT_LEGACY_DENY_PASS
+H418_AUTHENTICATED_SCOPE_V2_TO_DURABLE_H417_VOTER_PASS|FAKE_SECURITY_NO_CLOCK_AUTHORITY
+H421_TRUE_WORKER_SCOPED_P256_CLAIMS_FAKE_SECURITY_PASS|NO_ROOT
+H450_ENGINE_REMOTE_THEN_SELF_COMPOSITION_PASS|case=0|mock_signs=1|NO_AUTHORITY
+H421_REAL_ENGINE_DIRECT_ASSOC_SCOPED_P256_WORKER_PASS|FAKE_AEAD_NOT_ROOT
+H450_ENGINE_REMOTE_THEN_SELF_COMPOSITION_PASS|case=1|mock_signs=0|NO_AUTHORITY
+H421_REAL_ENGINE_DIRECT_ASSOC_SCOPED_P256_WORKER_PASS|FAKE_AEAD_NOT_ROOT
+H450_ENGINE_REMOTE_THEN_SELF_COMPOSITION_PASS|case=2|mock_signs=1|NO_AUTHORITY
+H421_REAL_ENGINE_DIRECT_ASSOC_SCOPED_P256_WORKER_PASS|FAKE_AEAD_NOT_ROOT
+H417_SCOPED_VOTE_AND_SIGNED_OUTBOX_HOST_PASS|MOCK_P256_NOT_AUTHORITY
+H371_CANDIDATE_TWO_SIGNED_WITNESSES_NVS_FAKE_REBOOT_CORRUPT_LOSS_STALE_TERM_PASS_NO_AUTHORITY
+H374_CANDIDATE_WORKER_B_PLUS_C_PERSISTED_FAKE_NVS_PASS_NO_RADIO_NO_CLOCK_AUTHORITY
+H420_SCOPE448_DURABLE_TWO_SIGNED_V2_HOST_PASS|MOCK_P256_NOT_ROOT
+H422_TYPED_LOCAL_OUTBOX_REMOTE_CLAIM_DURABLE_PAIR_HOST_PASS|FAKE_SIGNER|NO_ROOT
+H440_REAL_LOCAL_VOTER_OUTBOX_CANDIDATE_BRIDGE_PASS|storage_crypto=MOCK|authority=0
+H440_REAL_LOCAL_SOURCE_ONCE_FIELDS_REBOOT_SIGNATURE_AND_READBACK_FAILURES_PASS|storage_crypto=MOCK|authority=0
+H423_SCOPED_SIGNED_CERTIFICATE_EVIDENCE_MOCK_P256_PASS_NOT_AUTHORITY
+H425_PINNED_2_OF_3_SIGNED_P256_QUORUM_INTERSECTS_NOT_AUTHORITY_PASS
+H427_NUMERICAL_EARLIEST_VOTER_EXPIRY_NOT_AUTHORITY_PASS
+H426_CONSERVATIVE_VOTER_CLOCK_BOUND_NOT_AUTHORITY_PASS
+H375_EDP_CLOCK_INHERITED_ERA_CORRELATION_WITH_UNCERTAINTY_AND_HOLDOVER_BOUNDS_PASS_NOT_AUTHORITY
+H376_CANONICAL_REFERENCE_SELF_FENCE_NO_RENEW_NO_RESURRECTION_HOST_PASS_NOT_QUORUM_NOT_PHYSICAL
+H380_F12_OLD_ROOT_CONSERVATIVE_WAIT_NONAUTHORISING_PASS
+H367_DURABLE_SIGNED_OUTBOX_FAKE_NVS_READBACK_ONCE_REBOOT_TAMPER_PASS_NO_RF_NO_CLOCK_AUTHORITY
+H416_DURABLE_SIGNED_OUTBOX_FAKE_NVS_READBACK_ONCE_REBOOT_TAMPER_PASS_NO_RF_NO_CLOCK_AUTHORITY
+H451_ACTUAL_RECORDED_FENCE_SIGNED_LOCAL_DEADLINE_STRICT_PROVIDER_BUDGET_PASS|clock=MODEL|authority=0
+H448_SCOPED_EXACT_CONTEXT_NO_DOWNGRADE_AND_FENCE_PASS|clock=MODEL|authority=0
+H369_CANONICAL_EDP_CLOCK_COMMITTED_GRANT_EGRESS_GATE_PASS_NO_ELECTION_AUTHORITY
+H451_BOUNDED_SCOPE_TRANSPORT_PASS|case=0|provider_bound_ns=500000000|mock_outbox=1|protect=1|provider_calls=1|authority=0
+H451_BOUNDED_SCOPE_TRANSPORT_PASS|case=1|provider_bound_ns=500000000|mock_outbox=1|protect=0|provider_calls=0|authority=0
+H451_BOUNDED_SCOPE_TRANSPORT_PASS|case=2|provider_bound_ns=500000000|mock_outbox=1|protect=1|provider_calls=0|authority=0
+H451_BOUNDED_SCOPE_TRANSPORT_PASS|case=3|provider_bound_ns=500000000|mock_outbox=0|protect=0|provider_calls=0|authority=0
+H451_BOUNDED_SCOPE_TRANSPORT_PASS|case=0|provider_bound_ns=2000000000|mock_outbox=0|protect=0|provider_calls=0|authority=0
+H451_BOUNDED_SCOPE_TRANSPORT_PASS|case=0|provider_bound_ns=18446744073709551615|mock_outbox=0|protect=0|provider_calls=0|authority=0
+H451_UNKNOWN_PROVIDER_BOUND_REFUSED_BEFORE_SOURCE_OR_COUNTER_PASS|radio=MOCK|authority=0
+H368_BOUNDED_SIGNED_GRANT_RADIO_FAKE_PROVIDER_LIFECYCLE_PASS_NO_RF_NO_CLOCK_AUTHORITY
+H448_SCOPED_GUARDS_WIRE_OWNERSHIP_SHARED_ATTEMPTS_PASS|storage_crypto_radio_eligibility=MOCK|authority=0
+H370_SIGNED_B_C_FULL_WITNESSES_FAKE_CRYPTO_PASS_NO_DURABILITY_NO_CLOCK_AUTHORITY
+H341_ELECTION_REQUEST_WIRE_AND_SECURITY_CONTRACT_PASS (FAKE SECURITY, NO LIVE ELECTION)
+H351_ELECTION_GRANT_WIRE_AND_SECURITY_CONTRACT_PASS (FAKE SECURITY, NO ACK)
+H352_GRANT_DISTINCT_CLAIMS_PASS (2 CLAIMS, NO CERTIFICATE OR AUTHORITY)
+H360_CANONICAL_SIGNED_GRANT_CONTEXT_BOUND_FAKE_CRYPTO_ONLY_NOT_CLOCK_AUTHORITY_PASS
+H415_SCOPED_SIGNED_GRANT_V2_CONTEXT_FENCE_HOST_PASS|FAKE_SIGNATURE_ONLY|NOT_CLOCK_AUTHORITY
+H416_SCOPED_SIGNED_GRANT_SINGLE_UNPROTECT_SOURCE_AND_VERSION_BOUND_PASS_FAKE_SECURITY
+H352_AUTHENTICATED_ELECTION_ONE_UNPROTECT_REQUEST_OR_GRANT_PASS
+H340_PASS boot and same-term voter grant fencing
+H369_EDP_CLOCK_RECORDED_GRANT_EGRESS_FENCE_PASS_NO_CLOCK_AUTHORITY
+H340_PASS candidate window / storage / clock fault latching
+H340_PASS 81 canonical-Clock bound scenarios (external quorum assumed)
+H340_NEUTRAL_ELECTION_LEASE_FENCE_PASS (NOT LIVE ELECTION)
+H431_MONOTONIC_SHARED_EXCHANGE_PASS|security_fixture=mock|authority=0
+H432_ACTUAL_ENGINE_TYPED_ANCHOR_PASS|security_random=MOCK|authority=0
+H434_WORKER_RADIO_MOCK_REGRESSION_PASS|authority=0|rf=0
+H437_CONTROL_SHARED_OWNERSHIP_AND_WIRE_COMPATIBILITY_MOCK_PASS|authority=0|rf=0
+g++: CausalClockCaptureTests.cpp PASS
+g++: ElectionCertifiedClockWorkerTests.cpp PASS
+g++: ElectionReferenceActivationTests.cpp PASS
+g++: AuthenticatedActivityTests.cpp PASS
+g++: ClockCoordinationPlanTests.cpp PASS
+g++: H316ClockProtocolBudgetTests.cpp PASS
+g++: ClockCoordinationTests.cpp PASS
+g++: ClockCoordinatorTests.cpp PASS
+g++: ClockReceiverAuthorityFenceTests.cpp PASS
+g++: ClockCertifiedReceiverFencePolicyTests.cpp PASS
+g++: ElectionJournalTests.cpp PASS
+g++: ScopedElectionJournalTests.cpp PASS
+g++: ElectionScopedAuthenticatedRequestTests.cpp PASS
+g++: ElectionScopedSignedWorkerIngressTests.cpp PASS
+g++: ElectionScopedEngineWorkerTests.cpp PASS
+g++: ScopedJournalSignedOutboxIntegrationTests.cpp PASS
+g++: ElectionCandidateMajorityJournalTests.cpp PASS
+g++: ElectionScopedCandidateMajorityJournalTests.cpp PASS
+g++: ElectionScopedCandidateEvidenceStageTests.cpp PASS
+g++: ElectionScopedCertificateEvidenceTests.cpp PASS
+g++: ElectionScopedFixedQuorumSafetyTests.cpp PASS
+g++: ElectionConservativeVoterDeadlineTests.cpp PASS
+g++: ElectionContinuityCandidateGateTests.cpp PASS
+g++: ElectionReferenceLeaseSelfFenceTests.cpp PASS
+g++: ElectionFormerReferenceWaitTests.cpp PASS
+g++: ElectionDurableSignedGrantOutboxTests.cpp PASS
+g++: ElectionScopedDurableSignedGrantOutboxTests.cpp PASS
+g++: ElectionRecordedGrantTransmitEligibilityTests.cpp PASS
+g++: ElectionSignedGrantRadioTransportTests.cpp PASS
+g++: ElectionSignedMajorityEvidenceTests.cpp PASS
+g++: ElectionControlWireTests.cpp PASS
+g++: ElectionGrantWireTests.cpp PASS
+g++: ElectionGrantClaimCollectorTests.cpp PASS
+g++: ElectionSignedGrantEvidenceTests.cpp PASS
+g++: ElectionScopedSignedGrantTests.cpp PASS
+g++: ElectionControlOneUnprotectTests.cpp PASS
+g++: ElectionLeaseFenceTests.cpp PASS
+g++: ClockExchangeTests.cpp PASS
+g++: MonotonicClockExchangeTests.cpp PASS
+g++: AuthenticatedMonotonicClockExchangeTests.cpp PASS
+g++: AuthenticatedMonotonicClockRadioWorkerTests.cpp PASS
+g++: InfrastructureControlRadioTransportTests.cpp PASS
+g++: ClockRadioTransportTests.cpp PASS
+g++: ClockWorkerTests.cpp PASS
+g++: CommandInvocationAdapterTests.cpp PASS
+g++: CompositionTests.cpp PASS
+g++: ControlTests.cpp PASS
+g++: DeliveryPlanTests.cpp PASS
+g++: DeliveryPursuitTests.cpp PASS
+g++: DeliveryRuntimeTests.cpp PASS
+g++: DeliveryServiceTests.cpp PASS
+g++: DeliveryTransportTests.cpp PASS
+g++: EngineTests.cpp PASS
+g++: EventAdapterTests.cpp PASS
+g++: FanoutTests.cpp PASS
+g++: HopWireTests.cpp PASS
+g++: IngressTests.cpp PASS
+g++: InfrastructureSecurityTests.cpp PASS
+g++: MembershipTopologyTests.cpp PASS
+g++: ProviderAttemptRuntimeTests.cpp PASS
+g++: ProviderInfrastructureLaneTests.cpp PASS
+g++: RuntimeTests.cpp PASS
+g++: SemanticWireTests.cpp PASS
+g++: StatePublicationAdapterTests.cpp PASS
+g++: StateReadAdapterTests.cpp PASS
+g++: RelayDeliveryRuntimeTests.cpp PASS
+g++: SourceDeliveryRuntimeTests.cpp PASS
+g++: WireSecurityTests.cpp PASS
+g++: CompileFailClockUnsafeCapturePoint.cpp rejected as required
+g++: CompileFailForgedLocalCommittedGrant.cpp rejected as required
+g++: CompileFailClockAncestryCapacity.cpp rejected as required
+g++: CompileFailClockExchangeDomainMix.cpp rejected as required
+g++: CompileFailForgedVoterAnchor.cpp rejected as required
+g++: CompileFailVoterClockWeakRandom.cpp rejected as required
+g++: CompileFailElectionJournalNonComposition.cpp rejected as required
+g++: CompileFailClockReceiverAuthorityNonComposition.cpp rejected as required
+g++: CompileFailElectionLeaseUnsafeBounds.cpp rejected as required
+g++: CompileFailElectionLeaseNonCanonicalClock.cpp rejected as required
+g++: CompileFailDeliveryPerOriginCapacity.cpp rejected as required
+g++: CompileFailDeliveryRetentionOverflow.cpp rejected as required
+g++: CompileFailPlaintextCapacity.cpp rejected as required
+g++: CompileFailProtectedCapacity.cpp rejected as required
+g++: CompileFailWorkerPool.cpp rejected as required
+clang++: CausalClockCaptureTests.cpp PASS
+clang++: ElectionCertifiedClockWorkerTests.cpp PASS
+clang++: ElectionReferenceActivationTests.cpp PASS
+clang++: AuthenticatedActivityTests.cpp PASS
+clang++: ClockCoordinationPlanTests.cpp PASS
+clang++: H316ClockProtocolBudgetTests.cpp PASS
+clang++: ClockCoordinationTests.cpp PASS
+clang++: ClockCoordinatorTests.cpp PASS
+clang++: ClockReceiverAuthorityFenceTests.cpp PASS
+clang++: ClockCertifiedReceiverFencePolicyTests.cpp PASS
+clang++: ElectionJournalTests.cpp PASS
+clang++: ScopedElectionJournalTests.cpp PASS
+clang++: ElectionScopedAuthenticatedRequestTests.cpp PASS
+clang++: ElectionScopedSignedWorkerIngressTests.cpp PASS
+clang++: ElectionScopedEngineWorkerTests.cpp PASS
+clang++: ScopedJournalSignedOutboxIntegrationTests.cpp PASS
+clang++: ElectionCandidateMajorityJournalTests.cpp PASS
+clang++: ElectionScopedCandidateMajorityJournalTests.cpp PASS
+clang++: ElectionScopedCandidateEvidenceStageTests.cpp PASS
+clang++: ElectionScopedCertificateEvidenceTests.cpp PASS
+clang++: ElectionScopedFixedQuorumSafetyTests.cpp PASS
+clang++: ElectionConservativeVoterDeadlineTests.cpp PASS
+clang++: ElectionContinuityCandidateGateTests.cpp PASS
+clang++: ElectionReferenceLeaseSelfFenceTests.cpp PASS
+clang++: ElectionFormerReferenceWaitTests.cpp PASS
+clang++: ElectionDurableSignedGrantOutboxTests.cpp PASS
+clang++: ElectionScopedDurableSignedGrantOutboxTests.cpp PASS
+clang++: ElectionRecordedGrantTransmitEligibilityTests.cpp PASS
+clang++: ElectionSignedGrantRadioTransportTests.cpp PASS
+clang++: ElectionSignedMajorityEvidenceTests.cpp PASS
+clang++: ElectionControlWireTests.cpp PASS
+clang++: ElectionGrantWireTests.cpp PASS
+clang++: ElectionGrantClaimCollectorTests.cpp PASS
+clang++: ElectionSignedGrantEvidenceTests.cpp PASS
+clang++: ElectionScopedSignedGrantTests.cpp PASS
+clang++: ElectionControlOneUnprotectTests.cpp PASS
+clang++: ElectionLeaseFenceTests.cpp PASS
+clang++: ClockExchangeTests.cpp PASS
+clang++: MonotonicClockExchangeTests.cpp PASS
+clang++: AuthenticatedMonotonicClockExchangeTests.cpp PASS
+clang++: AuthenticatedMonotonicClockRadioWorkerTests.cpp PASS
+clang++: InfrastructureControlRadioTransportTests.cpp PASS
+clang++: ClockRadioTransportTests.cpp PASS
+clang++: ClockWorkerTests.cpp PASS
+clang++: CommandInvocationAdapterTests.cpp PASS
+clang++: CompositionTests.cpp PASS
+clang++: ControlTests.cpp PASS
+clang++: DeliveryPlanTests.cpp PASS
+clang++: DeliveryPursuitTests.cpp PASS
+clang++: DeliveryRuntimeTests.cpp PASS
+clang++: DeliveryServiceTests.cpp PASS
+clang++: DeliveryTransportTests.cpp PASS
+clang++: EngineTests.cpp PASS
+clang++: EventAdapterTests.cpp PASS
+clang++: FanoutTests.cpp PASS
+clang++: HopWireTests.cpp PASS
+clang++: IngressTests.cpp PASS
+clang++: InfrastructureSecurityTests.cpp PASS
+clang++: MembershipTopologyTests.cpp PASS
+clang++: ProviderAttemptRuntimeTests.cpp PASS
+clang++: ProviderInfrastructureLaneTests.cpp PASS
+clang++: RuntimeTests.cpp PASS
+clang++: SemanticWireTests.cpp PASS
+clang++: StatePublicationAdapterTests.cpp PASS
+clang++: StateReadAdapterTests.cpp PASS
+clang++: RelayDeliveryRuntimeTests.cpp PASS
+clang++: SourceDeliveryRuntimeTests.cpp PASS
+clang++: WireSecurityTests.cpp PASS
+clang++: CompileFailClockUnsafeCapturePoint.cpp rejected as required
+clang++: CompileFailForgedLocalCommittedGrant.cpp rejected as required
+clang++: CompileFailClockAncestryCapacity.cpp rejected as required
+clang++: CompileFailClockExchangeDomainMix.cpp rejected as required
+clang++: CompileFailForgedVoterAnchor.cpp rejected as required
+clang++: CompileFailVoterClockWeakRandom.cpp rejected as required
+clang++: CompileFailElectionJournalNonComposition.cpp rejected as required
+clang++: CompileFailClockReceiverAuthorityNonComposition.cpp rejected as required
+clang++: CompileFailElectionLeaseUnsafeBounds.cpp rejected as required
+clang++: CompileFailElectionLeaseNonCanonicalClock.cpp rejected as required
+clang++: CompileFailDeliveryPerOriginCapacity.cpp rejected as required
+clang++: CompileFailDeliveryRetentionOverflow.cpp rejected as required
+clang++: CompileFailPlaintextCapacity.cpp rejected as required
+clang++: CompileFailProtectedCapacity.cpp rejected as required
+clang++: CompileFailWorkerPool.cpp rejected as required
+EDP-Mesh GCC/Clang host suites: PASS

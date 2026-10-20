@@ -1,0 +1,5 @@
+{
+  "state": "FAIL",
+  "exit_code": "1",
+  "command.txt": "/srv/espressio/cache/espressif/python_env/idf6.0_py3.13_env/bin/python /srv/espressio/scratch/h471_native_validate.py compositions"
+}

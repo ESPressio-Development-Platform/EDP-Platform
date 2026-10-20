@@ -1,0 +1,78 @@
+[
+  {
+    "compiler": "g++",
+    "targets": 5,
+    "assertions_enabled_all_commands": true,
+    "compile_commands": [
+      {
+        "directory": "/srv/espressio/builds/H471-platform-gpp",
+        "command": "/usr/bin/g++  -I/srv/espressio/repos/EDP-Platform/tests/../src -I/srv/espressio/repos/EDP-System/src -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Werror -UNDEBUG -o CMakeFiles/synchronization_contract_tests.dir/synchronization/SynchronizationContractTests.cpp.o -c /srv/espressio/repos/EDP-Platform/tests/synchronization/SynchronizationContractTests.cpp",
+        "file": "/srv/espressio/repos/EDP-Platform/tests/synchronization/SynchronizationContractTests.cpp",
+        "output": "CMakeFiles/synchronization_contract_tests.dir/synchronization/SynchronizationContractTests.cpp.o"
+      },
+      {
+        "directory": "/srv/espressio/builds/H471-platform-gpp",
+        "command": "/usr/bin/g++  -I/srv/espressio/repos/EDP-Platform/tests/../src -I/srv/espressio/repos/EDP-System/src -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Werror -UNDEBUG -o CMakeFiles/execution_contract_tests.dir/execution/ExecutionContractTests.cpp.o -c /srv/espressio/repos/EDP-Platform/tests/execution/ExecutionContractTests.cpp",
+        "file": "/srv/espressio/repos/EDP-Platform/tests/execution/ExecutionContractTests.cpp",
+        "output": "CMakeFiles/execution_contract_tests.dir/execution/ExecutionContractTests.cpp.o"
+      },
+      {
+        "directory": "/srv/espressio/builds/H471-platform-gpp",
+        "command": "/usr/bin/g++  -I/srv/espressio/repos/EDP-Platform/tests/../src -I/srv/espressio/repos/EDP-System/src -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Werror -UNDEBUG -o CMakeFiles/randomness_contract_tests.dir/randomness/RandomContractTests.cpp.o -c /srv/espressio/repos/EDP-Platform/tests/randomness/RandomContractTests.cpp",
+        "file": "/srv/espressio/repos/EDP-Platform/tests/randomness/RandomContractTests.cpp",
+        "output": "CMakeFiles/randomness_contract_tests.dir/randomness/RandomContractTests.cpp.o"
+      },
+      {
+        "directory": "/srv/espressio/builds/H471-platform-gpp",
+        "command": "/usr/bin/g++  -I/srv/espressio/repos/EDP-Platform/tests/../src -I/srv/espressio/repos/EDP-System/src -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Werror -UNDEBUG -o CMakeFiles/concurrency_tests.dir/concurrency/ConcurrencyTests.cpp.o -c /srv/espressio/repos/EDP-Platform/tests/concurrency/ConcurrencyTests.cpp",
+        "file": "/srv/espressio/repos/EDP-Platform/tests/concurrency/ConcurrencyTests.cpp",
+        "output": "CMakeFiles/concurrency_tests.dir/concurrency/ConcurrencyTests.cpp.o"
+      },
+      {
+        "directory": "/srv/espressio/builds/H471-platform-gpp",
+        "command": "/usr/bin/g++  -I/srv/espressio/repos/EDP-Platform/tests/../src -I/srv/espressio/repos/EDP-System/src -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Werror -UNDEBUG -o CMakeFiles/snapshot_reuse_ordering_tests.dir/concurrency/SnapshotReuseOrderingTests.cpp.o -c /srv/espressio/repos/EDP-Platform/tests/concurrency/SnapshotReuseOrderingTests.cpp",
+        "file": "/srv/espressio/repos/EDP-Platform/tests/concurrency/SnapshotReuseOrderingTests.cpp",
+        "output": "CMakeFiles/snapshot_reuse_ordering_tests.dir/concurrency/SnapshotReuseOrderingTests.cpp.o"
+      }
+    ],
+    "hardware": false
+  },
+  {
+    "compiler": "clang++",
+    "targets": 5,
+    "assertions_enabled_all_commands": true,
+    "compile_commands": [
+      {
+        "directory": "/srv/espressio/builds/H471-platform-clangpp",
+        "command": "/usr/bin/clang++  -I/srv/espressio/repos/EDP-Platform/tests/../src -I/srv/espressio/repos/EDP-System/src -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Werror -UNDEBUG -o CMakeFiles/synchronization_contract_tests.dir/synchronization/SynchronizationContractTests.cpp.o -c /srv/espressio/repos/EDP-Platform/tests/synchronization/SynchronizationContractTests.cpp",
+        "file": "/srv/espressio/repos/EDP-Platform/tests/synchronization/SynchronizationContractTests.cpp",
+        "output": "CMakeFiles/synchronization_contract_tests.dir/synchronization/SynchronizationContractTests.cpp.o"
+      },
+      {
+        "directory": "/srv/espressio/builds/H471-platform-clangpp",
+        "command": "/usr/bin/clang++  -I/srv/espressio/repos/EDP-Platform/tests/../src -I/srv/espressio/repos/EDP-System/src -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Werror -UNDEBUG -o CMakeFiles/execution_contract_tests.dir/execution/ExecutionContractTests.cpp.o -c /srv/espressio/repos/EDP-Platform/tests/execution/ExecutionContractTests.cpp",
+        "file": "/srv/espressio/repos/EDP-Platform/tests/execution/ExecutionContractTests.cpp",
+        "output": "CMakeFiles/execution_contract_tests.dir/execution/ExecutionContractTests.cpp.o"
+      },
+      {
+        "directory": "/srv/espressio/builds/H471-platform-clangpp",
+        "command": "/usr/bin/clang++  -I/srv/espressio/repos/EDP-Platform/tests/../src -I/srv/espressio/repos/EDP-System/src -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Werror -UNDEBUG -o CMakeFiles/randomness_contract_tests.dir/randomness/RandomContractTests.cpp.o -c /srv/espressio/repos/EDP-Platform/tests/randomness/RandomContractTests.cpp",
+        "file": "/srv/espressio/repos/EDP-Platform/tests/randomness/RandomContractTests.cpp",
+        "output": "CMakeFiles/randomness_contract_tests.dir/randomness/RandomContractTests.cpp.o"
+      },
+      {
+        "directory": "/srv/espressio/builds/H471-platform-clangpp",
+        "command": "/usr/bin/clang++  -I/srv/espressio/repos/EDP-Platform/tests/../src -I/srv/espressio/repos/EDP-System/src -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Werror -UNDEBUG -o CMakeFiles/concurrency_tests.dir/concurrency/ConcurrencyTests.cpp.o -c /srv/espressio/repos/EDP-Platform/tests/concurrency/ConcurrencyTests.cpp",
+        "file": "/srv/espressio/repos/EDP-Platform/tests/concurrency/ConcurrencyTests.cpp",
+        "output": "CMakeFiles/concurrency_tests.dir/concurrency/ConcurrencyTests.cpp.o"
+      },
+      {
+        "directory": "/srv/espressio/builds/H471-platform-clangpp",
+        "command": "/usr/bin/clang++  -I/srv/espressio/repos/EDP-Platform/tests/../src -I/srv/espressio/repos/EDP-System/src -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Werror -UNDEBUG -o CMakeFiles/snapshot_reuse_ordering_tests.dir/concurrency/SnapshotReuseOrderingTests.cpp.o -c /srv/espressio/repos/EDP-Platform/tests/concurrency/SnapshotReuseOrderingTests.cpp",
+        "file": "/srv/espressio/repos/EDP-Platform/tests/concurrency/SnapshotReuseOrderingTests.cpp",
+        "output": "CMakeFiles/snapshot_reuse_ordering_tests.dir/concurrency/SnapshotReuseOrderingTests.cpp.o"
+      }
+    ],
+    "hardware": false
+  }
+]

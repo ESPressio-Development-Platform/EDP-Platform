@@ -1,0 +1,17 @@
+g++ before exit=1 H471_ALLOWED_VISIBILITY_MODEL|coherent=0|stale_generation_reads_denied_by_acquire=0|hardware=0
+ 
+g++ after exit=0 H471_ALLOWED_VISIBILITY_MODEL|coherent=1|stale_generation_reads_denied_by_acquire=3|hardware=0
+H471_ROLLOVER_PAUSED_WRITER_READER_PROGRESS_PASS|after_low_zero=0|hardware=0
+H471_ROLLOVER_PAUSED_WRITER_READER_PROGRESS_PASS|after_low_zero=1|hardware=0
+H471_REAL_HOST_100K_EIGHT_READER_LOW_WORD_ROLLOVER_SIGNATURE_PASS|hardware=0
+H471_SAME_72_BYTE_STORAGE_BUFFER_REUSE_AND_NONBLOCKING_ROLLOVER_PASS|hardware=0|authority=0
+ 
+clang++ before exit=1 H471_ALLOWED_VISIBILITY_MODEL|coherent=0|stale_generation_reads_denied_by_acquire=0|hardware=0
+ 
+clang++ after exit=0 H471_ALLOWED_VISIBILITY_MODEL|coherent=1|stale_generation_reads_denied_by_acquire=3|hardware=0
+H471_ROLLOVER_PAUSED_WRITER_READER_PROGRESS_PASS|after_low_zero=0|hardware=0
+H471_ROLLOVER_PAUSED_WRITER_READER_PROGRESS_PASS|after_low_zero=1|hardware=0
+H471_REAL_HOST_100K_EIGHT_READER_LOW_WORD_ROLLOVER_SIGNATURE_PASS|hardware=0
+H471_SAME_72_BYTE_STORAGE_BUFFER_REUSE_AND_NONBLOCKING_ROLLOVER_PASS|hardware=0|authority=0
+ 
+H471_BOTH_COMPILERS_OLD_MODEL_REFUSAL_AND_NEW_REAL_HOST_ROLLOVER_PROGRESS_PASS|hardware=0

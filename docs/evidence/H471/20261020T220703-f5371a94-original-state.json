@@ -1,0 +1,5 @@
+{
+  "state": "FAIL",
+  "exit_code": "1",
+  "command.txt": "python3 /srv/espressio/scratch/h470_validate.py release"
+}

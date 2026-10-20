@@ -1,0 +1,18 @@
+H471_PLATFORM gcc_sanitize ['g++', '-std=c++20', '-Wall', '-Wextra', '-Werror', '-pedantic', '-pthread', '-I/srv/espressio/repos/EDP-Platform/src', '-I/srv/espressio/repos/EDP-System/src', '-O1', '-g', '-fsanitize=address,undefined', '-fno-sanitize-recover=all', '-fno-pie', '-no-pie', '/srv/espressio/repos/EDP-Platform/tests/concurrency/ConcurrencyTests.cpp', '-o', '/tmp/h471-platform-gcc_sanitize-l3d78f07/ConcurrencyTests']
+H471_PLATFORM gcc_sanitize ['/tmp/h471-platform-gcc_sanitize-l3d78f07/ConcurrencyTests']
+H471_PLATFORM gcc_sanitize ['g++', '-std=c++20', '-Wall', '-Wextra', '-Werror', '-pedantic', '-pthread', '-I/srv/espressio/repos/EDP-Platform/src', '-I/srv/espressio/repos/EDP-System/src', '-O1', '-g', '-fsanitize=address,undefined', '-fno-sanitize-recover=all', '-fno-pie', '-no-pie', '/srv/espressio/repos/EDP-Platform/tests/concurrency/SnapshotReuseOrderingTests.cpp', '-o', '/tmp/h471-platform-gcc_sanitize-l3d78f07/SnapshotReuseOrderingTests']
+H471_PLATFORM gcc_sanitize ['/tmp/h471-platform-gcc_sanitize-l3d78f07/SnapshotReuseOrderingTests']
+H471_ALLOWED_VISIBILITY_MODEL|coherent=1|stale_generation_reads_denied_by_acquire=3|hardware=0
+H471_ROLLOVER_PAUSED_WRITER_READER_PROGRESS_PASS|after_low_zero=0|hardware=0
+H471_ROLLOVER_PAUSED_WRITER_READER_PROGRESS_PASS|after_low_zero=1|hardware=0
+H471_ROLLOVER_PAUSED_WRITER_READER_PROGRESS_PASS|after_low_zero=0|hardware=0
+H471_ROLLOVER_PAUSED_WRITER_READER_PROGRESS_PASS|after_low_zero=1|hardware=0
+H471_REAL_HOST_100K_EIGHT_READER_LOW_WORD_ROLLOVER_SIGNATURE_PASS|hardware=0
+H471_SAME_72_BYTE_STORAGE_BUFFER_REUSE_AND_NONBLOCKING_ROLLOVER_PASS|hardware=0|authority=0
+H471_PLATFORM gcc_sanitize ['g++', '-std=c++20', '-Wall', '-Wextra', '-Werror', '-pedantic', '-pthread', '-I/srv/espressio/repos/EDP-Platform/src', '-I/srv/espressio/repos/EDP-System/src', '-O1', '-g', '-fsanitize=address,undefined', '-fno-sanitize-recover=all', '-fno-pie', '-no-pie', '/srv/espressio/repos/EDP-Platform/tests/execution/ExecutionContractTests.cpp', '-o', '/tmp/h471-platform-gcc_sanitize-l3d78f07/ExecutionContractTests']
+H471_PLATFORM gcc_sanitize ['/tmp/h471-platform-gcc_sanitize-l3d78f07/ExecutionContractTests']
+H471_PLATFORM gcc_sanitize ['g++', '-std=c++20', '-Wall', '-Wextra', '-Werror', '-pedantic', '-pthread', '-I/srv/espressio/repos/EDP-Platform/src', '-I/srv/espressio/repos/EDP-System/src', '-O1', '-g', '-fsanitize=address,undefined', '-fno-sanitize-recover=all', '-fno-pie', '-no-pie', '/srv/espressio/repos/EDP-Platform/tests/randomness/RandomContractTests.cpp', '-o', '/tmp/h471-platform-gcc_sanitize-l3d78f07/RandomContractTests']
+H471_PLATFORM gcc_sanitize ['/tmp/h471-platform-gcc_sanitize-l3d78f07/RandomContractTests']
+H471_PLATFORM gcc_sanitize ['g++', '-std=c++20', '-Wall', '-Wextra', '-Werror', '-pedantic', '-pthread', '-I/srv/espressio/repos/EDP-Platform/src', '-I/srv/espressio/repos/EDP-System/src', '-O1', '-g', '-fsanitize=address,undefined', '-fno-sanitize-recover=all', '-fno-pie', '-no-pie', '/srv/espressio/repos/EDP-Platform/tests/synchronization/SynchronizationContractTests.cpp', '-o', '/tmp/h471-platform-gcc_sanitize-l3d78f07/SynchronizationContractTests']
+H471_PLATFORM gcc_sanitize ['/tmp/h471-platform-gcc_sanitize-l3d78f07/SynchronizationContractTests']
+H471_PLATFORM_GCC_SANITIZE_ALL_FIVE_CONTRACTS_PASS|hardware=0

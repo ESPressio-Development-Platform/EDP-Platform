@@ -80,3 +80,8 @@ The abstraction library does not pre-emptively accumulate SDK features.
 ESPressio requires C++20. For PlatformIO-compatible ESP32 development, PIOArduino is the recommended platform baseline because it tracks a current Arduino-ESP32/ESP-IDF toolchain. Stock PlatformIO Core/IDE may still be used when projects explicitly select the PIOArduino platform package and compile as C++20.
 
 See the EDP-System C++20 toolchain documentation for the canonical configuration.
+
+
+## H471 coherent snapshot publication
+
+[Buffer-reuse ordering and rollover](docs/H471-SNAPSHOT-ORDERING-PROOF.MD) use existing release/acquire words and the same fixed buffers/metadata. A stable rollover marker preserves reader progress while a writer is paused; the documented logical generation is63bits. No public API, retained storage, Clock, backend, lock, task, dependency or0.1.0 version change. Complete mandatory graph remains EDP-Platform -> EDP-System, with no optional edge.

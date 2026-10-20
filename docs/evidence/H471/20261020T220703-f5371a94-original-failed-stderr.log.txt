@@ -1,0 +1,12 @@
+clangpp-SynchronizedClockTests: /srv/espressio/repos/EDP-Clock/tests/synchronized/SynchronizedClockTests.cpp:1059: int main(): Assertion `!readerFailure.load(std::memory_order_acquire)' failed.
+Traceback (most recent call last):
+  File "/srv/espressio/scratch/h470_validate.py", line 31, in <module>
+    if mode!='analyze':run([str(exe)])
+                       ~~~^^^^^^^^^^^^
+  File "/srv/espressio/scratch/h470_validate.py", line 4, in run
+    def run(cmd,**kw):print('H470',suite,cmd,flush=True);subprocess.run(cmd,check=True,**kw)
+                                                         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/subprocess.py", line 577, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['/tmp/h470-release-j0dno3_8/clangpp-SynchronizedClockTests']' died with <Signals.SIGABRT: 6>.

@@ -1,0 +1,84 @@
+from pathlib import Path
+r=Path('/srv/espressio/repos/EDP-Platform');p=r/'src/concurrency/ConcurrentSnapshot.hpp';s=p.read_text();assert 'RolloverMarker' not in s
+s=s.replace('Coherent publication generation represented by two lock-free 32-bit atomic words.','Coherent publication generation: 31 high epoch bits plus 32 low bits.')
+s=s.replace('/// High 32 bits of the logical publication generation.','/// High 31 bits of the logical publication generation.',1)
+needle='        // Snapshot storage.';assert s.count(needle)==1;s=s.replace(needle,'''        // The top high-word bit denotes a rollover with the old published buffer readable.
+        static constexpr std::uint32_t RolloverMarker = 0x80000000U;
+        static constexpr std::uint32_t EpochMask = 0x7FFFFFFFU;
+        static constexpr std::uint32_t MaximumLow = 0xFFFFFFFFU;
+
+'''+needle)
+s=s.replace('/// High 32 bits of the logical publication generation.','/// High epoch plus transient rollover marker; no atomic 64-bit operation.',1)
+s=s.replace('_buffers[bufferIndex][index].StoreRelaxed(','_buffers[bufferIndex][index].StoreRelease(').replace('_buffers[bufferIndex][index].LoadRelaxed()','_buffers[bufferIndex][index].LoadAcquire()')
+s=s.replace('/// Replaces one inactive atomic buffer with the supplied state representation.','''/// Replaces one inactive buffer. Release on EVERY word connects later buffer reuse
+        /// to the reader that acquires that word, so its final generation cannot remain stale.''')
+s=s.replace('/// Copies one published atomic buffer into a plain state representation.','''/// Acquires every copied word, including a word observed from a subsequent reuse.
+        /// Such a read imports the writer publication preceding that reuse.''')
+def replace_block(text,marker,new):
+ start=text.index(marker);i=text.index('{',start);depth=1;end=i+1
+ while depth:
+  depth+=(text[end]=='{')-(text[end]=='}');end+=1
+ return text[:start]+new+text[end:]
+start='        Detail::SnapshotGeneration ReadGeneration() const noexcept '
+assert start in s
+s=replace_block(s,start,'''        Detail::SnapshotGeneration ReadGeneration() const noexcept {
+            for (;;) {
+                const auto highBefore = _generationHigh.LoadAcquire();
+                const auto low = _generationLow.LoadAcquire();
+                const auto highAfter = _generationHigh.LoadAcquire();
+                if (highBefore != highAfter) continue;
+                if ((highBefore & RolloverMarker) != 0U) {
+                    // The sole writer has not completed the new epoch. Buffer1 still holds
+                    // the last published MaximumLow state; a paused writer cannot block us.
+                    return {highBefore & EpochMask, MaximumLow};
+                }
+                return {highBefore, low};
+            }
+        }''')
+s=s.replace('/// Reads the logical 64-bit publication generation using only lock-free 32-bit operations.','''/// Reads a coherent publication identity using existing 32-bit acquire operations.
+        /// A stable rollover marker denotes the OLD published identity, not a wait condition.''')
+start='        void Publish(\n            const TState& state\n        ) noexcept '
+assert start in s
+s=replace_block(s,start,'''        void Publish(
+            const TState& state
+        ) noexcept {
+            const auto currentLow = _generationLow.LoadRelaxed();
+            const auto currentHigh = _generationHigh.LoadRelaxed();
+            const auto nextLow = static_cast<std::uint32_t>(currentLow + 1U);
+            const auto targetBuffer = static_cast<std::size_t>(nextLow & 1U);
+            WriteBuffer(targetBuffer, state);
+            if (nextLow == 0U) {
+                // Until the final high release, readers normalize the marker to the previous
+                // MaximumLow publication in buffer1. That buffer is not reused in this phase.
+                _generationHigh.StoreRelease(currentHigh | RolloverMarker);
+                _generationLow.StoreRelease(0U);
+                _generationHigh.StoreRelease(static_cast<std::uint32_t>((currentHigh + 1U) & EpochMask));
+            } else {
+                _generationLow.StoreRelease(nextLow);
+            }
+        }''')
+s=s.replace('/// A reader may retry when publication overlaps its read, but it never waits for a writer-held','''/// Data-word acquire/release ordering prevents acceptance of a partially reused buffer.
+    /// A full 2^63-publication cycle during one read is outside the finite generation contract.
+    /// A reader may retry when publication overlaps its read, but it never waits for a writer-held''')
+p.write_text(s)
+p=r/'tests/CMakeLists.txt';s=p.read_text();assert 'enable_testing()' not in s and 'concurrency_tests' not in s
+s+='''
+# H471: retain all original contracts, register the existing concurrency suite and
+# the buffer-reuse/rollover regressions, with assertions enabled in Release.
+find_package(Threads REQUIRED)
+add_executable(concurrency_tests concurrency/ConcurrencyTests.cpp)
+add_executable(snapshot_reuse_ordering_tests concurrency/SnapshotReuseOrderingTests.cpp)
+foreach(test_name concurrency_tests snapshot_reuse_ordering_tests)
+    target_include_directories(${test_name} PRIVATE ../src ${EDP_SYSTEM_SOURCE_DIR}/src)
+    target_link_libraries(${test_name} PRIVATE Threads::Threads)
+endforeach()
+enable_testing()
+foreach(test_name synchronization_contract_tests execution_contract_tests
+        randomness_contract_tests concurrency_tests snapshot_reuse_ordering_tests)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        target_compile_options(${test_name} PRIVATE -Wall -Wextra -Wpedantic -Werror -UNDEBUG)
+    endif()
+    add_test(NAME ${test_name} COMMAND ${test_name})
+endforeach()
+''';p.write_text(s)
+print('H471 existing two-buffer storage/API preserved; data acquire/release and readable rollover implemented; no device action')

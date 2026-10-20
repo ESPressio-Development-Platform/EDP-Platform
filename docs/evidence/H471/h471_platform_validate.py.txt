@@ -1,0 +1,24 @@
+from pathlib import Path
+import subprocess,tempfile,json,sys
+r=Path('/srv/espressio/repos/EDP-Platform');system=r.parent/'EDP-System';suite=sys.argv[1];rows=[]
+def run(cmd,**kw):print('H471_PLATFORM',suite,cmd,flush=True);subprocess.run(cmd,check=True,**kw)
+if suite=='cmake':
+ for cc in ['g++','clang++']:
+  build=Path('/srv/espressio/builds')/('H471-platform-'+cc.replace('+','p'))
+  run(['cmake','-S',str(r/'tests'),'-B',str(build),'-DCMAKE_BUILD_TYPE=Release','-DCMAKE_CXX_COMPILER='+cc,'-DCMAKE_EXPORT_COMPILE_COMMANDS=ON','-DEDP_SYSTEM_SOURCE_DIR='+str(system)])
+  run(['cmake','--build',str(build),'-j','2']);run(['ctest','--test-dir',str(build),'--output-on-failure'])
+  commands=json.loads((build/'compile_commands.json').read_text());assert len(commands)==5 and all('-UNDEBUG' in c['command'] and c['command'].index('-UNDEBUG')>c['command'].index('-DNDEBUG') for c in commands)
+  rows.append({'compiler':cc,'targets':5,'assertions_enabled_all_commands':True,'compile_commands':commands,'hardware':False})
+else:
+ cc='g++' if suite=='gcc_sanitize' else 'clang++';sources=sorted(r.glob('tests/*/*Tests.cpp'));assert len(sources)==5
+ with tempfile.TemporaryDirectory(prefix='h471-platform-'+suite+'-') as tmp:
+  for source in sources:
+   flags=['-std=c++20','-Wall','-Wextra','-Werror','-pedantic','-pthread','-I'+str(r/'src'),'-I'+str(system/'src')]
+   if suite=='analyze':flags+=['--analyze','-Xanalyzer','-analyzer-werror','-Xanalyzer','-analyzer-output=text']
+   else:flags+=['-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all','-fno-pie','-no-pie']
+   cmd=[cc,*flags,str(source)];exe=Path(tmp)/source.stem
+   if suite!='analyze':cmd+=['-o',str(exe)]
+   run(cmd)
+   if suite!='analyze':run([str(exe)])
+   rows.append({'compiler':cc,'unit':source.stem,'command':cmd,'hardware':False})
+Path('/srv/espressio/scratch/H471-PLATFORM-'+suite.upper()+'-RESULTS.json').write_text(json.dumps(rows,indent=2)+'\n');print('H471_PLATFORM_'+suite.upper()+'_ALL_FIVE_CONTRACTS_PASS|hardware=0',flush=True)

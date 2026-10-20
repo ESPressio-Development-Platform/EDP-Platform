@@ -1,0 +1,16 @@
+from pathlib import Path
+import subprocess,tempfile,json,resource
+resource.setrlimit(resource.RLIMIT_CORE,(0,0))
+r=Path('/srv/espressio/repos');source=r/'EDP-Platform/tests/concurrency/SnapshotReuseOrderingTests.cpp';rows=[]
+with tempfile.TemporaryDirectory(prefix='h471-initial-') as temp:
+ for cc in ['g++','clang++']:
+  for label,root in [('before',Path('/srv/espressio/scratch/H471-before')),('after',r/'EDP-Platform')]:
+   exe=Path(temp)/(cc.replace('+','p')+'-'+label);command=[cc,'-std=c++20','-O2','-DNDEBUG','-UNDEBUG','-Wall','-Wextra','-Werror','-pedantic','-pthread','-I'+str(root/'src'),'-I'+str(r/'EDP-System/src'),str(source),'-o',str(exe)]
+   p=subprocess.run([*command,'-H'],text=True,capture_output=True);assert p.returncode==0,p.stderr
+   assert str(root/'src/concurrency/ConcurrentSnapshot.hpp') in p.stderr
+   outcome=subprocess.run([str(exe),*(['--model-only'] if label=='before' else [])],text=True,capture_output=True,timeout=180)
+   print(cc,label,'exit='+str(outcome.returncode),outcome.stdout,outcome.stderr,flush=True)
+   assert outcome.returncode!=0 if label=='before' else outcome.returncode==0
+   rows.append({'compiler':cc,'source':label,'command':command,'include_trace_selected_header':str(root/'src/concurrency/ConcurrentSnapshot.hpp'),'exit':outcome.returncode,'stdout':outcome.stdout,'stderr':outcome.stderr,'old_failure_is_explicit_visibility_model':label=='before','hardware':False})
+Path('/srv/espressio/scratch/H471-BEFORE-AFTER-VISIBILITY-AND-ROLLOVER.json').write_text(json.dumps(rows,indent=2)+'\n')
+print('H471_BOTH_COMPILERS_OLD_MODEL_REFUSAL_AND_NEW_REAL_HOST_ROLLOVER_PROGRESS_PASS|hardware=0',flush=True)

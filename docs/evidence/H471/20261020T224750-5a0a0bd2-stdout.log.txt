@@ -1,0 +1,396 @@
+H470_H471_NATIVE compositions ['/srv/espressio/bin/pio', 'run', '--project-dir', '/srv/espressio/repos/EDP-Labs/Mesh-Concurrency-Qualification/H447-Native-Qualified-Local-Self-Grant/PlatformIO_ESP-IDF']
+Processing esp32dev (board: esp32dev; platform: https://github.com/pioarduino/platform-espressif32/releases/download/stable/platform-espressif32.zip; framework: espidf)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32dev.html
+PLATFORM: Espressif 32 (55.3.312) > Espressif ESP32 Dev Module
+HARDWARE: ESP32 240MHz, 320KB RAM, 4MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-prog, esp-prog-2, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-espidf @ 3.50505.0 (5.5.5) 
+ - tool-cmake @ 4.0.3 
+ - tool-esp-rom-elfs @ 2026.5.28 
+ - tool-esptoolpy @ 5.4.0 
+ - tool-ninja @ 1.13.1 
+ - tool-scons @ 4.41101.0 (4.11.1) 
+ - tool-xtensa-esp-elf-gdb @ 17.1.0+20260402 
+ - toolchain-xtensa-esp-elf @ 14.2.0+20260121
+Reading CMake configuration...
+Warning! Flash memory size mismatch detected. Expected 4MB, found 2MB!
+Please select a proper value in your `sdkconfig.defaults` or via the `menuconfig` target!
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ soft
+Found 0 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Retrieving maximum program size .pio/build/esp32dev/firmware.elf
+Checking size .pio/build/esp32dev/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [=         ]   6.0% (used 19704 bytes from 327680 bytes)
+Flash: [=         ]   5.9% (used 247473 bytes from 4194304 bytes)
+========================= [SUCCESS] Took 3.40 seconds =========================
+
+Processing esp32s3 (board: esp32-s3-devkitc-1; platform: https://github.com/pioarduino/platform-espressif32/releases/download/stable/platform-espressif32.zip; framework: espidf)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-s3-devkitc-1.html
+PLATFORM: Espressif 32 (55.3.312) > Espressif ESP32-S3-DevKitC-1-N8 (8 MB QD, No PSRAM)
+HARDWARE: ESP32S3 240MHz, 320KB RAM, 8MB Flash
+DEBUG: Current (esp-builtin) On-board (esp-builtin) External (cmsis-dap, esp-bridge, esp-prog, esp-prog-2, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-espidf @ 3.50505.0 (5.5.5) 
+ - tool-cmake @ 4.0.3 
+ - tool-esp-rom-elfs @ 2026.5.28 
+ - tool-esptoolpy @ 5.4.0 
+ - tool-ninja @ 1.13.1 
+ - tool-scons @ 4.41101.0 (4.11.1) 
+ - tool-xtensa-esp-elf-gdb @ 17.1.0+20260402 
+ - toolchain-xtensa-esp-elf @ 14.2.0+20260121
+Reading CMake configuration...
+Warning! Flash memory size mismatch detected. Expected 8MB, found 2MB!
+Please select a proper value in your `sdkconfig.defaults` or via the `menuconfig` target!
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ soft
+Found 0 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Retrieving maximum program size .pio/build/esp32s3/firmware.elf
+Checking size .pio/build/esp32s3/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [=         ]   6.6% (used 21604 bytes from 327680 bytes)
+Flash: [          ]   3.3% (used 277861 bytes from 8388608 bytes)
+========================= [SUCCESS] Took 3.36 seconds =========================
+
+Environment    Status    Duration
+-------------  --------  ------------
+esp32dev       SUCCESS   00:00:03.404
+esp32s3        SUCCESS   00:00:03.365
+========================= 2 succeeded in 00:00:06.768 =========================
+H470_H471_NATIVE compositions ['/srv/espressio/bin/pio', 'run', '--project-dir', '/srv/espressio/repos/EDP-Labs/Mesh-Concurrency-Qualification/H447-Native-Qualified-Local-Self-Grant/PlatformIO_Arduino']
+Processing esp32dev (board: esp32dev; platform: https://github.com/pioarduino/platform-espressif32/releases/download/stable/platform-espressif32.zip; framework: arduino)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32dev.html
+PLATFORM: Espressif 32 (55.3.312) > Espressif ESP32 Dev Module
+HARDWARE: ESP32 240MHz, 320KB RAM, 4MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-prog, esp-prog-2, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-arduinoespressif32 @ 3.3.12 
+ - framework-arduinoespressif32-libs @ 5.5.5+sha.b774170ff46 
+ - tool-esptoolpy @ 5.4.0 
+ - tool-xtensa-esp-elf-gdb @ 17.1.0+20260402 
+ - toolchain-xtensa-esp-elf @ 14.2.0+20260121
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ soft
+Found 44 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Retrieving maximum program size .pio/build/esp32dev/firmware.elf
+Checking size .pio/build/esp32dev/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [=         ]   8.7% (used 28664 bytes from 327680 bytes)
+Flash: [===       ]  25.4% (used 333303 bytes from 1310720 bytes)
+========================= [SUCCESS] Took 1.93 seconds =========================
+
+Processing esp32s3 (board: esp32-s3-devkitc-1; platform: https://github.com/pioarduino/platform-espressif32/releases/download/stable/platform-espressif32.zip; framework: arduino)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-s3-devkitc-1.html
+PLATFORM: Espressif 32 (55.3.312) > Espressif ESP32-S3-DevKitC-1-N8 (8 MB QD, No PSRAM)
+HARDWARE: ESP32S3 240MHz, 320KB RAM, 8MB Flash
+DEBUG: Current (esp-builtin) On-board (esp-builtin) External (cmsis-dap, esp-bridge, esp-prog, esp-prog-2, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-arduinoespressif32 @ 3.3.12 
+ - framework-arduinoespressif32-libs @ 5.5.5+sha.b774170ff46 
+ - tool-esptoolpy @ 5.4.0 
+ - tool-xtensa-esp-elf-gdb @ 17.1.0+20260402 
+ - toolchain-xtensa-esp-elf @ 14.2.0+20260121
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ soft
+Found 44 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Retrieving maximum program size .pio/build/esp32s3/firmware.elf
+Checking size .pio/build/esp32s3/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [=         ]   8.6% (used 28232 bytes from 327680 bytes)
+Flash: [=         ]  10.0% (used 335588 bytes from 3342336 bytes)
+========================= [SUCCESS] Took 2.18 seconds =========================
+
+Environment    Status    Duration
+-------------  --------  ------------
+esp32dev       SUCCESS   00:00:01.926
+esp32s3        SUCCESS   00:00:02.184
+========================= 2 succeeded in 00:00:04.110 =========================
+H470_H471_NATIVE compositions ['/srv/espressio/bin/pio', 'run', '--project-dir', '/srv/espressio/repos/EDP-Labs/Mesh-Concurrency-Qualification/H436-Actual-Canonical-NRF-Voter-Clock']
+Processing esp32dev (board: esp32dev; platform: https://github.com/pioarduino/platform-espressif32/releases/download/stable/platform-espressif32.zip; framework: espidf)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32dev.html
+PLATFORM: Espressif 32 (55.3.312) > Espressif ESP32 Dev Module
+HARDWARE: ESP32 240MHz, 320KB RAM, 4MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-prog, esp-prog-2, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-espidf @ 3.50505.0 (5.5.5) 
+ - tool-cmake @ 4.0.3 
+ - tool-esp-rom-elfs @ 2026.5.28 
+ - tool-esptoolpy @ 5.4.0 
+ - tool-ninja @ 1.13.1 
+ - tool-scons @ 4.41101.0 (4.11.1) 
+ - tool-xtensa-esp-elf-gdb @ 17.1.0+20260402 
+ - toolchain-xtensa-esp-elf @ 14.2.0+20260121
+Reading CMake configuration...
+Warning! Flash memory size mismatch detected. Expected 4MB, found 2MB!
+Please select a proper value in your `sdkconfig.defaults` or via the `menuconfig` target!
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ soft
+Found 0 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Compiling .pio/build/esp32dev/esp_app_format/esp_app_desc.c.o
+Archiving .pio/build/esp32dev/esp-idf/esp_app_format/libesp_app_format.a
+Indexing .pio/build/esp32dev/esp-idf/esp_app_format/libesp_app_format.a
+Generating project linker script .pio/build/esp32dev/sections.ld
+Linking .pio/build/esp32dev/firmware.elf
+                            Memory Type Usage Summary                             
+┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Memory Type/Section ┃ Used [bytes] ┃ Used [%] ┃ Remain [bytes] ┃ Total [bytes] ┃
+┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ Flash Code          │       246650 │          │                │               │
+│    .text            │       246650 │          │                │               │
+│ DRAM                │        78312 │    43.33 │         102424 │        180736 │
+│    .bss             │        66600 │    36.85 │                │               │
+│    .data            │        11712 │     6.48 │                │               │
+│ IRAM                │        66435 │    50.69 │          64637 │        131072 │
+│    .text            │        65407 │     49.9 │                │               │
+│    .vectors         │         1028 │     0.78 │                │               │
+│ Flash Data          │        58412 │          │                │               │
+│    .rodata          │        58156 │          │                │               │
+│    .appdesc         │          256 │          │                │               │
+└─────────────────────┴──────────────┴──────────┴────────────────┴───────────────┘
+Retrieving maximum program size .pio/build/esp32dev/firmware.elf
+Checking size .pio/build/esp32dev/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [==        ]  23.9% (used 78312 bytes from 327680 bytes)
+Flash: [=         ]   9.1% (used 382953 bytes from 4194304 bytes)
+Building .pio/build/esp32dev/firmware.bin
+esptool v5.4.0
+Creating ESP32 image...
+Merged 2 ELF sections.
+Successfully created ESP32 image.
+Creating binary "firmware.factory.bin" with:
+    Offset   | File
+ -  0x1000   | bootloader.bin
+ -  0x8000   | partitions.bin
+ -  0x10000  | firmware.bin
+Successfully created combined binary image.
+========================= [SUCCESS] Took 7.79 seconds =========================
+
+Processing esp32s3 (board: esp32-s3-devkitc-1; platform: https://github.com/pioarduino/platform-espressif32/releases/download/stable/platform-espressif32.zip; framework: espidf)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-s3-devkitc-1.html
+PLATFORM: Espressif 32 (55.3.312) > Espressif ESP32-S3-DevKitC-1-N8 (8 MB QD, No PSRAM)
+HARDWARE: ESP32S3 240MHz, 320KB RAM, 8MB Flash
+DEBUG: Current (esp-builtin) On-board (esp-builtin) External (cmsis-dap, esp-bridge, esp-prog, esp-prog-2, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-espidf @ 3.50505.0 (5.5.5) 
+ - tool-cmake @ 4.0.3 
+ - tool-esp-rom-elfs @ 2026.5.28 
+ - tool-esptoolpy @ 5.4.0 
+ - tool-ninja @ 1.13.1 
+ - tool-scons @ 4.41101.0 (4.11.1) 
+ - tool-xtensa-esp-elf-gdb @ 17.1.0+20260402 
+ - toolchain-xtensa-esp-elf @ 14.2.0+20260121
+Reading CMake configuration...
+Warning! Flash memory size mismatch detected. Expected 8MB, found 2MB!
+Please select a proper value in your `sdkconfig.defaults` or via the `menuconfig` target!
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ soft
+Found 0 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Compiling .pio/build/esp32s3/esp_app_format/esp_app_desc.c.o
+Archiving .pio/build/esp32s3/esp-idf/esp_app_format/libesp_app_format.a
+Indexing .pio/build/esp32s3/esp-idf/esp_app_format/libesp_app_format.a
+Generating project linker script .pio/build/esp32s3/sections.ld
+Linking .pio/build/esp32s3/firmware.elf
+                            Memory Type Usage Summary                             
+┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃ Memory Type/Section ┃ Used [bytes] ┃ Used [%] ┃ Remain [bytes] ┃ Total [bytes] ┃
+┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ Flash Code          │       266386 │          │                │               │
+│    .text            │       266386 │          │                │               │
+│ DIRAM               │       136827 │    40.04 │         204933 │        341760 │
+│    .bss             │        66680 │    19.51 │                │               │
+│    .text            │        56747 │     16.6 │                │               │
+│    .data            │        13400 │     3.92 │                │               │
+│ Flash Data          │        62616 │          │                │               │
+│    .rodata          │        62360 │          │                │               │
+│    .appdesc         │          256 │          │                │               │
+│ IRAM                │        16384 │    100.0 │              0 │         16384 │
+│    .text            │        15356 │    93.73 │                │               │
+│    .vectors         │         1028 │     6.27 │                │               │
+└─────────────────────┴──────────────┴──────────┴────────────────┴───────────────┘
+Retrieving maximum program size .pio/build/esp32s3/firmware.elf
+Checking size .pio/build/esp32s3/firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [==        ]  24.4% (used 80080 bytes from 327680 bytes)
+Flash: [          ]   5.0% (used 415277 bytes from 8388608 bytes)
+Building .pio/build/esp32s3/firmware.bin
+esptool v5.4.0
+Creating ESP32-S3 image...
+Merged 2 ELF sections.
+Successfully created ESP32-S3 image.
+Creating binary "firmware.factory.bin" with:
+    Offset   | File
+ -  0x0      | bootloader.bin
+ -  0x8000   | partitions.bin
+ -  0x10000  | firmware.bin
+Successfully created combined binary image.
+========================= [SUCCESS] Took 8.42 seconds =========================
+
+Environment    Status    Duration
+-------------  --------  ------------
+esp32dev       SUCCESS   00:00:07.793
+esp32s3        SUCCESS   00:00:08.419
+========================= 2 succeeded in 00:00:16.212 =========================
+H470_H471_NATIVE compositions ['/srv/espressio/bin/pio', 'run', '--project-dir', '/srv/espressio/repos/EDP-Labs/Mesh-Concurrency-Qualification/H447-Native-Qualified-Local-Self-Grant/PlatformIO_ESP-IDF', '-e', 'esp32dev', '-t', 'compiledb']
+Processing esp32dev (board: esp32dev; platform: https://github.com/pioarduino/platform-espressif32/releases/download/stable/platform-espressif32.zip; framework: espidf)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32dev.html
+PLATFORM: Espressif 32 (55.3.312) > Espressif ESP32 Dev Module
+HARDWARE: ESP32 240MHz, 320KB RAM, 4MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-prog, esp-prog-2, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-espidf @ 3.50505.0 (5.5.5) 
+ - tool-cmake @ 4.0.3 
+ - tool-esp-rom-elfs @ 2026.5.28 
+ - tool-esptoolpy @ 5.4.0 
+ - tool-ninja @ 1.13.1 
+ - tool-scons @ 4.41101.0 (4.11.1) 
+ - tool-xtensa-esp-elf-gdb @ 17.1.0+20260402 
+ - toolchain-xtensa-esp-elf @ 14.2.0+20260121
+Reading CMake configuration...
+Warning! Flash memory size mismatch detected. Expected 4MB, found 2MB!
+Please select a proper value in your `sdkconfig.defaults` or via the `menuconfig` target!
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ soft
+Found 0 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Building compilation database compile_commands.json
+========================= [SUCCESS] Took 2.46 seconds =========================
+
+Environment    Status    Duration
+-------------  --------  ------------
+esp32dev       SUCCESS   00:00:02.458
+========================= 1 succeeded in 00:00:02.458 =========================
+H470_H471_NATIVE compositions ['/srv/espressio/bin/pio', 'run', '--project-dir', '/srv/espressio/repos/EDP-Labs/Mesh-Concurrency-Qualification/H447-Native-Qualified-Local-Self-Grant/PlatformIO_ESP-IDF', '-e', 'esp32s3', '-t', 'compiledb']
+Processing esp32s3 (board: esp32-s3-devkitc-1; platform: https://github.com/pioarduino/platform-espressif32/releases/download/stable/platform-espressif32.zip; framework: espidf)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-s3-devkitc-1.html
+PLATFORM: Espressif 32 (55.3.312) > Espressif ESP32-S3-DevKitC-1-N8 (8 MB QD, No PSRAM)
+HARDWARE: ESP32S3 240MHz, 320KB RAM, 8MB Flash
+DEBUG: Current (esp-builtin) On-board (esp-builtin) External (cmsis-dap, esp-bridge, esp-prog, esp-prog-2, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-espidf @ 3.50505.0 (5.5.5) 
+ - tool-cmake @ 4.0.3 
+ - tool-esp-rom-elfs @ 2026.5.28 
+ - tool-esptoolpy @ 5.4.0 
+ - tool-ninja @ 1.13.1 
+ - tool-scons @ 4.41101.0 (4.11.1) 
+ - tool-xtensa-esp-elf-gdb @ 17.1.0+20260402 
+ - toolchain-xtensa-esp-elf @ 14.2.0+20260121
+Reading CMake configuration...
+Warning! Flash memory size mismatch detected. Expected 8MB, found 2MB!
+Please select a proper value in your `sdkconfig.defaults` or via the `menuconfig` target!
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ soft
+Found 0 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Building compilation database compile_commands.json
+========================= [SUCCESS] Took 2.49 seconds =========================
+
+Environment    Status    Duration
+-------------  --------  ------------
+esp32s3        SUCCESS   00:00:02.494
+========================= 1 succeeded in 00:00:02.494 =========================
+H470_H471_NATIVE compositions ['/srv/espressio/bin/pio', 'run', '--project-dir', '/srv/espressio/repos/EDP-Labs/Mesh-Concurrency-Qualification/H447-Native-Qualified-Local-Self-Grant/PlatformIO_Arduino', '-e', 'esp32dev', '-t', 'compiledb']
+Processing esp32dev (board: esp32dev; platform: https://github.com/pioarduino/platform-espressif32/releases/download/stable/platform-espressif32.zip; framework: arduino)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32dev.html
+PLATFORM: Espressif 32 (55.3.312) > Espressif ESP32 Dev Module
+HARDWARE: ESP32 240MHz, 320KB RAM, 4MB Flash
+DEBUG: Current (cmsis-dap) External (cmsis-dap, esp-bridge, esp-prog, esp-prog-2, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-arduinoespressif32 @ 3.3.12 
+ - framework-arduinoespressif32-libs @ 5.5.5+sha.b774170ff46 
+ - tool-esptoolpy @ 5.4.0 
+ - tool-xtensa-esp-elf-gdb @ 17.1.0+20260402 
+ - toolchain-xtensa-esp-elf @ 14.2.0+20260121
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ soft
+Found 44 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Building compilation database compile_commands.json
+========================= [SUCCESS] Took 1.41 seconds =========================
+
+Environment    Status    Duration
+-------------  --------  ------------
+esp32dev       SUCCESS   00:00:01.408
+========================= 1 succeeded in 00:00:01.408 =========================
+H470_H471_NATIVE compositions ['/srv/espressio/bin/pio', 'run', '--project-dir', '/srv/espressio/repos/EDP-Labs/Mesh-Concurrency-Qualification/H447-Native-Qualified-Local-Self-Grant/PlatformIO_Arduino', '-e', 'esp32s3', '-t', 'compiledb']
+Processing esp32s3 (board: esp32-s3-devkitc-1; platform: https://github.com/pioarduino/platform-espressif32/releases/download/stable/platform-espressif32.zip; framework: arduino)
+--------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32-s3-devkitc-1.html
+PLATFORM: Espressif 32 (55.3.312) > Espressif ESP32-S3-DevKitC-1-N8 (8 MB QD, No PSRAM)
+HARDWARE: ESP32S3 240MHz, 320KB RAM, 8MB Flash
+DEBUG: Current (esp-builtin) On-board (esp-builtin) External (cmsis-dap, esp-bridge, esp-prog, esp-prog-2, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES: 
+ - contrib-piohome @ 3.4.4 
+ - framework-arduinoespressif32 @ 3.3.12 
+ - framework-arduinoespressif32-libs @ 5.5.5+sha.b774170ff46 
+ - tool-esptoolpy @ 5.4.0 
+ - tool-xtensa-esp-elf-gdb @ 17.1.0+20260402 
+ - toolchain-xtensa-esp-elf @ 14.2.0+20260121
+LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ off, Compatibility ~ soft
+Found 44 compatible libraries
+Scanning dependencies...
+No dependencies
+Building in release mode
+Building compilation database compile_commands.json
+========================= [SUCCESS] Took 1.28 seconds =========================
+
+Environment    Status    Duration
+-------------  --------  ------------
+esp32s3        SUCCESS   00:00:01.279
+========================= 1 succeeded in 00:00:01.279 =========================
+IRQ_CLOCK_ELF_PLACEMENT_PASS|{"application_data_internal": true, "backend_thunk_internal": true, "callback_closure": [{"bytes": 158, "literal_loads": 7, "section": ".iram0.text", "symbol": "_ZN4H43610CaptureNowEv"}, {"bytes": 37, "literal_loads": 2, "section": ".iram0.text", "symbol": "cache_hal_is_cache_enabled"}, {"bytes": 21, "literal_loads": 1, "section": ".iram0.text", "symbol": "esp_dport_access_reg_read"}, {"bytes": 79, "literal_loads": 6, "section": ".iram0.text", "symbol": "esp_timer_impl_get_counter_reg"}, {"bytes": 20, "literal_loads": 0, "section": ".iram0.text", "symbol": "esp_timer_impl_get_time"}, {"bytes": 17, "literal_loads": 0, "section": ".iram0.text", "symbol": "spi_flash_cache_enabled"}, {"bytes": 34, "literal_loads": 2, "section": ".iram0.text", "symbol": "xPortInIsrContext"}], "physical_latency_qualified": false, "qualified_sdk_bindings": [], "rom_targets": ["_xtos_set_intlevel"]}
+IRQ_CLOCK_ELF_PLACEMENT_PASS|{"application_data_internal": true, "backend_thunk_internal": true, "callback_closure": [{"bytes": 158, "literal_loads": 7, "section": ".iram0.text", "symbol": "_ZN4H43610CaptureNowEv"}, {"bytes": 78, "literal_loads": 4, "section": ".iram0.text", "symbol": "cache_hal_is_cache_enabled"}, {"bytes": 22, "literal_loads": 1, "section": ".iram0.text", "symbol": "esp_timer_impl_get_time"}, {"bytes": 17, "literal_loads": 0, "section": ".iram0.text", "symbol": "spi_flash_cache_enabled"}, {"bytes": 77, "literal_loads": 1, "section": ".iram0.text", "symbol": "systimer_hal_get_counter_value"}, {"bytes": 17, "literal_loads": 0, "section": ".iram0.text", "symbol": "systimer_ticks_to_us"}, {"bytes": 34, "literal_loads": 2, "section": ".iram0.text", "symbol": "xPortInIsrContext"}], "physical_latency_qualified": false, "qualified_sdk_bindings": [{"data": "systimer_hal", "entrypoint": "esp_timer_get_time", "source_hashes_verified": true, "target": "systimer_ticks_to_us"}], "rom_targets": ["_xtos_set_intlevel"]}
+H471_SIX_NATIVE_COMPOSITIONS_FOUR_OLD_NEW_LAYOUTS_AND_CANONICAL_CALLBACK_PASS|state=32|snapshot=72|hardware=0|full_isr=0

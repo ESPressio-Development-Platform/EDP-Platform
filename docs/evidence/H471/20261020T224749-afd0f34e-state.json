@@ -1,0 +1,7 @@
+{
+  "state": "PASS",
+  "exit_code": "0",
+  "started_at": "2026-10-20T22:47:50+02:00",
+  "finished_at": "2026-10-20T22:49:59+02:00",
+  "command.txt": "python3 /srv/espressio/repos/EDP-Mesh/tests/run_tests.py"
+}

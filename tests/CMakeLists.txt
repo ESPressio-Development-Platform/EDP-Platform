@@ -88,3 +88,21 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
             -Werror
     )
 endif()
+
+# H471: retain all original contracts, register the existing concurrency suite and
+# the buffer-reuse/rollover regressions, with assertions enabled in Release.
+find_package(Threads REQUIRED)
+add_executable(concurrency_tests concurrency/ConcurrencyTests.cpp)
+add_executable(snapshot_reuse_ordering_tests concurrency/SnapshotReuseOrderingTests.cpp)
+foreach(test_name concurrency_tests snapshot_reuse_ordering_tests)
+    target_include_directories(${test_name} PRIVATE ../src ${EDP_SYSTEM_SOURCE_DIR}/src)
+    target_link_libraries(${test_name} PRIVATE Threads::Threads)
+endforeach()
+enable_testing()
+foreach(test_name synchronization_contract_tests execution_contract_tests
+        randomness_contract_tests concurrency_tests snapshot_reuse_ordering_tests)
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        target_compile_options(${test_name} PRIVATE -Wall -Wextra -Wpedantic -Werror -UNDEBUG)
+    endif()
+    add_test(NAME ${test_name} COMMAND ${test_name})
+endforeach()

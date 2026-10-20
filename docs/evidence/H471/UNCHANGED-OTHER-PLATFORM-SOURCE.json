@@ -1,0 +1,32 @@
+{
+  "only_changed_existing_production_file": [
+    "src/concurrency/ConcurrentSnapshot.hpp"
+  ],
+  "unchanged": {
+    "src/ESPressio_Platform.hpp": "ab1c91dd9028a31eef343096a2cb3bcf2f7b46c0c50e0800ba615887caddef32",
+    "src/concurrency/ConcurrencyComposition.hpp": "99cb9d008aa41d7effd2bfa37ba1e024cde4ec320e2e3186e4add526dcad9d38",
+    "src/concurrency/AtomicWord32Contract.hpp": "65b4eb067a6f015e2490e62cc0a28ee14c71cef5865dd8d8ca7a800469eff074",
+    "src/concurrency/Concurrency.hpp": "8e1e58ac58adb89e809069fa2336295103eec46e25d8c24879f20170a4dbad0c",
+    "src/synchronization/WaitTimeout.hpp": "b01a277caeca5ac42ce9792a444cf172b520fac76091dac63548ffbe722c3c5d",
+    "src/synchronization/SynchronizationTypes.hpp": "46596cd1aa8f7222e3f4bc46c34c0ee0b9d2ad0c422be3f3f9ca9df2e386be11",
+    "src/synchronization/SynchronizationContracts.hpp": "62894ac1f2d3dfb663c5d3237d319eb61ce1b87523e448c4dd1afbd0395ca038",
+    "src/synchronization/Synchronization.hpp": "f1ee039acb256a4a2c91d0063afd05e629838074882d2e5333cd105889dec70c",
+    "src/synchronization/SynchronizationComposition.hpp": "6a9189ed96c49e8608c85b4ece34be43dcf9841e0eaf551a2198f5a4e1cbe85a",
+    "src/randomness/RandomTypes.hpp": "90a605a6b29830530244d61bffe3010429c90b6fd9905bc753b53b1b884a5838",
+    "src/randomness/RandomComposition.hpp": "fea63e3e85d80119105bc17c5cc9c603f93a540a6b23f8b6a40c3f3b2e7c8100",
+    "src/randomness/RandomContract.hpp": "70970948f4349d9afff2bbf790a6e929dc681d553089e6ef948982d98294ff95",
+    "src/randomness/Randomness.hpp": "499799be220268558bc284dac28ebc160c209ad67e435ba8b72c9a0ecbcce471",
+    "src/platform/PlatformComposition.hpp": "579eea908de7c3120b9f9463046e39079e0318d1551b0011c33e39454f61b079",
+    "src/execution/ExecutionContextContract.hpp": "f689accce0868cbb2d77cbcc6be5178e729fba72d5c72352d8ec083573671c48",
+    "src/execution/ExecutionComposition.hpp": "1f64d067b98a24f465196a26c2c7e08d324f12ccdf4cff41e3a369f0bf62cd58",
+    "src/execution/Execution.hpp": "00d564b74313684d9a18d11cd1a07469726c931fde187d3254b8e05e655f80c4",
+    "src/execution/ExecutionTypes.hpp": "6bad510e93534e23eef13d7fe1e4feb4e79211723bc2c32d0c236a6e5bec8376"
+  },
+  "snapshot_runtime_members": [
+    "two fixed buffers",
+    "generation high",
+    "generation low"
+  ],
+  "new_runtime_members": 0,
+  "new_package_edges": 0
+}

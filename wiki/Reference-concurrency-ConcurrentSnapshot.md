@@ -1,5 +1,7 @@
 # src/concurrency/ConcurrentSnapshot.hpp
 
+> Historical source reference for the exact baseline linked below. The current H471 contract uses data-word release/acquire and a readable rollover marker with a63-bit logical horizon. See [the current contract](../docs/CONCURRENCY.MD) and [ordering proof](../docs/H471-SNAPSHOT-ORDERING-PROOF.MD).
+
 **Primary classification:** PUBLIC API
 
 **Source baseline:** `34c35862978f9a37c5d99c2198b91134042038eb`
@@ -350,3 +352,6 @@ critical section, so pre-empting a writer cannot deadlock a reader.
 TState Read() const noexcept
 ```
 
+
+
+H471 corrects buffer-reuse ordering and split-generation rollover. Data words use release/acquire; a readable rollover marker preserves progress when the writer is paused. The honest logical horizon is63bits with a separate high-word marker, using the SAME two metadata words and unchanged storage/API. See [the current ordering proof](../docs/H471-SNAPSHOT-ORDERING-PROOF.MD); earlier64-bit/relaxed-buffer descriptions are superseded.

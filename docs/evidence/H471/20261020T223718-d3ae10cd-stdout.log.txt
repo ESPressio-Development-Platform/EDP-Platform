@@ -1,0 +1,93 @@
+H471_PLATFORM cmake ['cmake', '-S', '/srv/espressio/repos/EDP-Platform/tests', '-B', '/srv/espressio/builds/H471-platform-gpp', '-DCMAKE_BUILD_TYPE=Release', '-DCMAKE_CXX_COMPILER=g++', '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON', '-DEDP_SYSTEM_SOURCE_DIR=/srv/espressio/repos/EDP-System']
+-- The CXX compiler identification is GNU 14.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Configuring done (0.2s)
+-- Generating done (0.0s)
+-- Build files have been written to: /srv/espressio/builds/H471-platform-gpp
+H471_PLATFORM cmake ['cmake', '--build', '/srv/espressio/builds/H471-platform-gpp', '-j', '2']
+[ 10%] Building CXX object CMakeFiles/synchronization_contract_tests.dir/synchronization/SynchronizationContractTests.cpp.o
+[ 20%] Building CXX object CMakeFiles/execution_contract_tests.dir/execution/ExecutionContractTests.cpp.o
+[ 30%] Linking CXX executable synchronization_contract_tests
+[ 40%] Linking CXX executable execution_contract_tests
+[ 40%] Built target synchronization_contract_tests
+[ 40%] Built target execution_contract_tests
+[ 50%] Building CXX object CMakeFiles/randomness_contract_tests.dir/randomness/RandomContractTests.cpp.o
+[ 60%] Building CXX object CMakeFiles/concurrency_tests.dir/concurrency/ConcurrencyTests.cpp.o
+[ 70%] Linking CXX executable randomness_contract_tests
+[ 70%] Built target randomness_contract_tests
+[ 80%] Building CXX object CMakeFiles/snapshot_reuse_ordering_tests.dir/concurrency/SnapshotReuseOrderingTests.cpp.o
+[ 90%] Linking CXX executable concurrency_tests
+[ 90%] Built target concurrency_tests
+[100%] Linking CXX executable snapshot_reuse_ordering_tests
+[100%] Built target snapshot_reuse_ordering_tests
+H471_PLATFORM cmake ['ctest', '--test-dir', '/srv/espressio/builds/H471-platform-gpp', '--output-on-failure']
+Internal ctest changing into directory: /srv/espressio/builds/H471-platform-gpp
+Test project /srv/espressio/builds/H471-platform-gpp
+    Start 1: synchronization_contract_tests
+1/5 Test #1: synchronization_contract_tests ...   Passed    0.00 sec
+    Start 2: execution_contract_tests
+2/5 Test #2: execution_contract_tests .........   Passed    0.00 sec
+    Start 3: randomness_contract_tests
+3/5 Test #3: randomness_contract_tests ........   Passed    0.00 sec
+    Start 4: concurrency_tests
+4/5 Test #4: concurrency_tests ................   Passed    0.04 sec
+    Start 5: snapshot_reuse_ordering_tests
+5/5 Test #5: snapshot_reuse_ordering_tests ....   Passed    0.05 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =   0.09 sec
+H471_PLATFORM cmake ['cmake', '-S', '/srv/espressio/repos/EDP-Platform/tests', '-B', '/srv/espressio/builds/H471-platform-clangpp', '-DCMAKE_BUILD_TYPE=Release', '-DCMAKE_CXX_COMPILER=clang++', '-DCMAKE_EXPORT_COMPILE_COMMANDS=ON', '-DEDP_SYSTEM_SOURCE_DIR=/srv/espressio/repos/EDP-System']
+-- The CXX compiler identification is Clang 19.1.7
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/clang++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /srv/espressio/builds/H471-platform-clangpp
+H471_PLATFORM cmake ['cmake', '--build', '/srv/espressio/builds/H471-platform-clangpp', '-j', '2']
+[ 10%] Building CXX object CMakeFiles/synchronization_contract_tests.dir/synchronization/SynchronizationContractTests.cpp.o
+[ 20%] Building CXX object CMakeFiles/execution_contract_tests.dir/execution/ExecutionContractTests.cpp.o
+[ 40%] Linking CXX executable execution_contract_tests
+[ 40%] Linking CXX executable synchronization_contract_tests
+[ 40%] Built target execution_contract_tests
+[ 40%] Built target synchronization_contract_tests
+[ 50%] Building CXX object CMakeFiles/randomness_contract_tests.dir/randomness/RandomContractTests.cpp.o
+[ 60%] Building CXX object CMakeFiles/concurrency_tests.dir/concurrency/ConcurrencyTests.cpp.o
+[ 70%] Linking CXX executable randomness_contract_tests
+[ 70%] Built target randomness_contract_tests
+[ 80%] Building CXX object CMakeFiles/snapshot_reuse_ordering_tests.dir/concurrency/SnapshotReuseOrderingTests.cpp.o
+[ 90%] Linking CXX executable concurrency_tests
+[ 90%] Built target concurrency_tests
+[100%] Linking CXX executable snapshot_reuse_ordering_tests
+[100%] Built target snapshot_reuse_ordering_tests
+H471_PLATFORM cmake ['ctest', '--test-dir', '/srv/espressio/builds/H471-platform-clangpp', '--output-on-failure']
+Internal ctest changing into directory: /srv/espressio/builds/H471-platform-clangpp
+Test project /srv/espressio/builds/H471-platform-clangpp
+    Start 1: synchronization_contract_tests
+1/5 Test #1: synchronization_contract_tests ...   Passed    0.00 sec
+    Start 2: execution_contract_tests
+2/5 Test #2: execution_contract_tests .........   Passed    0.00 sec
+    Start 3: randomness_contract_tests
+3/5 Test #3: randomness_contract_tests ........   Passed    0.00 sec
+    Start 4: concurrency_tests
+4/5 Test #4: concurrency_tests ................   Passed    0.05 sec
+    Start 5: snapshot_reuse_ordering_tests
+5/5 Test #5: snapshot_reuse_ordering_tests ....   Passed    0.09 sec
+
+100% tests passed, 0 tests failed out of 5
+
+Total Test time (real) =   0.14 sec
+H471_PLATFORM_CMAKE_ALL_FIVE_CONTRACTS_PASS|hardware=0

@@ -1,0 +1,35 @@
+from pathlib import Path
+import subprocess,tempfile,sys,os,json
+r=Path('/srv/espressio/repos/EDP-Clock');workspace=r.parent;suite=sys.argv[1]
+def run(cmd,**kw):print('H471-CLOCK',suite,cmd,flush=True);subprocess.run(cmd,check=True,**kw)
+if suite=='normal':
+ for cc in ['g++','clang++']:run(['bash',str(r/'tests/run_host_tests.sh')],env={**os.environ,'CXX':cc,'EDP_SYSTEM_SOURCE_DIR':str(workspace/'EDP-System'),'EDP_PLATFORM_SOURCE_DIR':str(workspace/'EDP-Platform')})
+ print('H471-CLOCK_BOTH_COMPILERS_OWNING_NINE_UNIT_AND_RATIONAL_ORACLE_NORMAL_PASS|hardware=0',flush=True);raise SystemExit(0)
+if suite=='release':compilers=['g++','clang++'];mode='release'
+elif suite=='gcc_sanitize':compilers=['g++'];mode='sanitize'
+elif suite=='clang_sanitize':compilers=['clang++'];mode='sanitize'
+elif suite=='analyze':compilers=['clang++'];mode='analyze'
+else:raise SystemExit('Unknown suite')
+sources=sorted([*r.glob('tests/monotonic/*Tests.cpp'),*r.glob('tests/synchronized/*Tests.cpp'),*r.glob('tests/stopwatch/*Tests.cpp')]);assert len(sources)==9
+rows=[]
+with tempfile.TemporaryDirectory(prefix='h470-'+suite+'-') as tmp:
+ for cc in compilers:
+  for source in sources:
+   name=source.stem;flags=['-std=c++20','-Wall','-Wextra','-Werror','-pedantic','-pthread','-I'+str(r/'src'),'-I'+str(workspace/'EDP-System/src'),'-I'+str(workspace/'EDP-Platform/src')]
+   if mode=='release':flags+=['-O2','-DNDEBUG','-UNDEBUG']
+   elif mode=='sanitize':flags+=['-O1','-g','-fsanitize=address,undefined','-fno-sanitize-recover=all','-fno-omit-frame-pointer','-fno-pie','-no-pie']
+   else:
+    flags+=['--analyze','-Xanalyzer','-analyzer-werror','-Xanalyzer','-analyzer-output=text']
+    if name=='StopwatchTests':flags+=['-Xanalyzer','-analyzer-disable-checker','-Xanalyzer','cplusplus.Move']
+   extra=[]
+   if name=='MonotonicClockTests':extra=[str(r/'tests/monotonic/MonotonicNowConsumer.cpp')]
+   if name=='SynchronizedClockTests':extra=[str(r/'tests/synchronized/SynchronizedNowConsumer.cpp')]
+   command=[cc,*flags,str(source),*(extra if mode!='analyze' else [])]
+   exe=Path(tmp)/(cc.replace('+','p')+'-'+name)
+   if mode!='analyze':command+=['-o',str(exe)]
+   run(command)
+   if mode!='analyze':run([str(exe)])
+   rows.append({'compiler':cc,'unit':name,'mode':mode,'command':command,'assertions_enabled':True,'hardware':False})
+  run(['python3',str(r/'tests/monotonic_projection_oracle.py'),'--compiler',cc,'--mode',mode,'--results','/srv/espressio/scratch/H471-CLOCK-ORACLE-'+suite+'-'+cc.replace('+','p')+'.json'])
+Path('/srv/espressio/scratch/H471-CLOCK-'+suite.upper()+'-RESULTS.json').write_text(json.dumps(rows,indent=2)+'\n')
+print('H471-CLOCK_OWNING_'+suite.upper()+'_NINE_UNIT_AND_ORACLE_PASS|compilers='+str(len(compilers))+'|hardware=0',flush=True)

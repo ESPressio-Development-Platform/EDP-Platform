@@ -1,0 +1,16 @@
+from pathlib import Path
+import re,subprocess,tempfile,json,resource
+resource.setrlimit(resource.RLIMIT_CORE,(0,0))
+workspace=Path('/srv/espressio/repos');old=Path('/srv/espressio/scratch/H470-before');source=(old/'tests/synchronized/SynchronizedClockTests.cpp').read_text();source=source.replace('#include <atomic>','#include <atomic>\n#include <cstdio>');needle='    std::atomic<bool> readerFailure{false};';assert source.count(needle)==1;source=source.replace(needle,needle+'\n    std::atomic<unsigned> failureReasons{0U};')
+pattern=r'readerFailure\.store\(\s*true,\s*std::memory_order_release\s*\);';matches=list(re.finditer(pattern,source));assert len(matches)==4
+for bit,match in reversed(list(enumerate(matches))):
+ extra='std::fprintf(stderr,"H471_REGRESSION|previous=%llu|current=%llu|state=%u|uncertainty=%u\\n",static_cast<unsigned long long>(previousTimestamp),static_cast<unsigned long long>(timestamp),static_cast<unsigned>(reading.State()),reading.Uncertainty().Nanoseconds()), ' if bit==0 else ''
+ replacement='('+extra+'(void)failureReasons.fetch_or('+str(1<<bit)+'U,std::memory_order_relaxed), readerFailure.store(true,std::memory_order_release));'
+ source=source[:match.start()]+replacement+source[match.end():]
+needle='    assert(!readerFailure.load(std::memory_order_acquire));';assert source.count(needle)==1;source=source.replace(needle,'    std::fprintf(stderr,"H471_READER_FAILURE_REASONS|mask=%u\\n",failureReasons.load());\n'+needle)
+trace=Path('/srv/espressio/scratch/H471-traced-original-reader.cpp');trace.write_text(source);rows=[]
+with tempfile.TemporaryDirectory(prefix='h471-traced-before-') as temp:
+ exe=Path(temp)/'trace';command=['clang++','-std=c++20','-O2','-DNDEBUG','-UNDEBUG','-pthread','-I'+str(old/'src'),'-I'+str(workspace/'EDP-System/src'),'-I'+str(workspace/'EDP-Platform/src'),str(trace),str(old/'tests/synchronized/SynchronizedNowConsumer.cpp'),'-o',str(exe)];subprocess.run(command,check=True)
+ for i in range(40):
+  p=subprocess.run([str(exe)],text=True,capture_output=True);rows.append({'iteration':i,'exit':p.returncode,'diagnostic':p.stderr});print('H471_OLD_SOURCE_INSTRUMENTED_READER',i,p.returncode,p.stderr.strip(),flush=True)
+Path('/srv/espressio/scratch/H471-OLD-READER-DIAGNOSTICS.json').write_text(json.dumps({'test_is_instrumented_copy_not_unmodified_baseline':True,'old_clock_include':str(old/'src'),'command':command,'runs':rows,'hardware':False},indent=2)+'\n')

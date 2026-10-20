@@ -12,12 +12,12 @@ namespace ESPressio::Platform::Concurrency {
 
     namespace Detail {
 
-        /// Coherent publication generation represented by two lock-free 32-bit atomic words.
+        /// Coherent publication generation: 31 high epoch bits plus 32 low bits.
         struct SnapshotGeneration final {
 
             // Generation coordinates.
 
-            /// High 32 bits of the logical publication generation.
+            /// High 31 bits of the logical publication generation.
             std::uint32_t High;
 
             /// Low 32 bits of the logical publication generation.
@@ -44,6 +44,8 @@ namespace ESPressio::Platform::Concurrency {
     /// Two atomic-word buffers are retained. The single writer always fills the inactive buffer
     /// before publishing a new generation. Readers copy only from the currently published buffer
     /// and validate that the publication generation did not change while the copy was in progress.
+    /// Data-word acquire/release ordering prevents acceptance of a partially reused buffer.
+    /// A full 2^63-publication cycle during one read is outside the finite generation contract.
     /// A reader may retry when publication overlaps its read, but it never waits for a writer-held
     /// mutex, critical section, task, semaphore, or other blocking synchronization primitive.
     ///
@@ -85,12 +87,17 @@ namespace ESPressio::Platform::Concurrency {
             "ConcurrentSnapshot state must occupy at least one byte"
         );
 
+        // The top high-word bit denotes a rollover with the old published buffer readable.
+        static constexpr std::uint32_t RolloverMarker = 0x80000000U;
+        static constexpr std::uint32_t EpochMask = 0x7FFFFFFFU;
+        static constexpr std::uint32_t MaximumLow = 0xFFFFFFFFU;
+
         // Snapshot storage.
 
         /// Alternating fixed buffers holding atomic representations of published state.
         std::array<Buffer, 2U> _buffers;
 
-        /// High 32 bits of the logical publication generation.
+        /// High epoch plus transient rollover marker; no atomic 64-bit operation.
         Word _generationHigh;
 
         /// Low 32 bits of the logical publication generation and active-buffer selector.
@@ -132,7 +139,8 @@ namespace ESPressio::Platform::Concurrency {
 
         // Buffer access.
 
-        /// Replaces one inactive atomic buffer with the supplied state representation.
+        /// Replaces one inactive buffer. Release on EVERY word connects later buffer reuse
+        /// to the reader that acquires that word, so its final generation cannot remain stale.
         void WriteBuffer(
             std::size_t bufferIndex,
             const TState& state
@@ -140,19 +148,20 @@ namespace ESPressio::Platform::Concurrency {
             const auto encoded = Encode(state);
 
             for (std::size_t index = 0U; index < WordCount; ++index)
-                _buffers[bufferIndex][index].StoreRelaxed(
+                _buffers[bufferIndex][index].StoreRelease(
                     encoded[index]
                 );
         }
 
-        /// Copies one published atomic buffer into a plain state representation.
+        /// Acquires every copied word, including a word observed from a subsequent reuse.
+        /// Such a read imports the writer publication preceding that reuse.
         PlainBuffer ReadBuffer(
             std::size_t bufferIndex
         ) const noexcept {
             PlainBuffer encoded {};
 
             for (std::size_t index = 0U; index < WordCount; ++index)
-                encoded[index] = _buffers[bufferIndex][index].LoadRelaxed();
+                encoded[index] = _buffers[bufferIndex][index].LoadAcquire();
 
             return encoded;
         }
@@ -160,15 +169,21 @@ namespace ESPressio::Platform::Concurrency {
 
         // Generation access.
 
-        /// Reads the logical 64-bit publication generation using only lock-free 32-bit operations.
+        /// Reads a coherent publication identity using existing 32-bit acquire operations.
+        /// A stable rollover marker denotes the OLD published identity, not a wait condition.
         Detail::SnapshotGeneration ReadGeneration() const noexcept {
-            const auto low = _generationLow.LoadAcquire();
-            const auto high = _generationHigh.LoadRelaxed();
-
-            return Detail::SnapshotGeneration {
-                high,
-                low
-            };
+            for (;;) {
+                const auto highBefore = _generationHigh.LoadAcquire();
+                const auto low = _generationLow.LoadAcquire();
+                const auto highAfter = _generationHigh.LoadAcquire();
+                if (highBefore != highAfter) continue;
+                if ((highBefore & RolloverMarker) != 0U) {
+                    // The sole writer has not completed the new epoch. Buffer1 still holds
+                    // the last published MaximumLow state; a paused writer cannot block us.
+                    return {highBefore & EpochMask, MaximumLow};
+                }
+                return {highBefore, low};
+            }
         }
 
     public:
@@ -243,24 +258,17 @@ namespace ESPressio::Platform::Concurrency {
             const auto currentLow = _generationLow.LoadRelaxed();
             const auto currentHigh = _generationHigh.LoadRelaxed();
             const auto nextLow = static_cast<std::uint32_t>(currentLow + 1U);
-            const auto nextHigh = static_cast<std::uint32_t>(
-                currentHigh +
-                (nextLow == 0U ? 1U : 0U)
-            );
             const auto targetBuffer = static_cast<std::size_t>(nextLow & 1U);
-
-            // The target buffer is inactive under the currently published generation. Populate it
-            // completely before changing the generation observed by readers.
-            WriteBuffer(
-                targetBuffer,
-                state
-            );
-
-            // On low-word rollover, publish the new high word first. The subsequent release store
-            // of the low word makes both the high word and the completed buffer visible together.
-            if (nextLow == 0U) _generationHigh.StoreRelaxed(nextHigh);
-
-            _generationLow.StoreRelease(nextLow);
+            WriteBuffer(targetBuffer, state);
+            if (nextLow == 0U) {
+                // Until the final high release, readers normalize the marker to the previous
+                // MaximumLow publication in buffer1. That buffer is not reused in this phase.
+                _generationHigh.StoreRelease(currentHigh | RolloverMarker);
+                _generationLow.StoreRelease(0U);
+                _generationHigh.StoreRelease(static_cast<std::uint32_t>((currentHigh + 1U) & EpochMask));
+            } else {
+                _generationLow.StoreRelease(nextLow);
+            }
         }
 
 

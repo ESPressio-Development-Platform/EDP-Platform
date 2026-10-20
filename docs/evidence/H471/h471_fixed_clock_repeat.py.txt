@@ -1,0 +1,15 @@
+from pathlib import Path
+import subprocess,tempfile,json,resource,hashlib
+resource.setrlimit(resource.RLIMIT_CORE,(0,0))
+r=Path('/srv/espressio/repos');clock=r/'EDP-Clock';before=Path('/srv/espressio/scratch/H470-before');source=clock/'tests/synchronized/SynchronizedClockTests.cpp';other=clock/'tests/synchronized/SynchronizedNowConsumer.cpp';assert source.read_bytes()==(before/'tests/synchronized/SynchronizedClockTests.cpp').read_bytes()
+rows=[]
+with tempfile.TemporaryDirectory(prefix='h470-sync-isolation-') as t:
+ for label,include in [('old_clock_fixed_platform',before/'src'),('new_clock_fixed_platform',clock/'src')]:
+  exe=Path(t)/label;command=['clang++','-std=c++20','-O2','-DNDEBUG','-UNDEBUG','-Wall','-Wextra','-Werror','-pedantic','-pthread','-I'+str(include),'-I'+str(r/'EDP-System/src'),'-I'+str(r/'EDP-Platform/src'),str(source),str(other),'-o',str(exe)]
+  traced=subprocess.run([*command,'-H'],text=True,capture_output=True);assert traced.returncode==0 and str(include/'clock/SynchronizedClockProvider.hpp') in traced.stderr
+  outcomes=[]
+  for iteration in range(100):
+   run=subprocess.run([str(exe)],text=True,capture_output=True);outcomes.append({'iteration':iteration,'exit':run.returncode,'stderr':run.stderr});print('H471_FIXED_PLATFORM_UNMODIFIED_SYNC_TEST',label,iteration,run.returncode,flush=True)
+  rows.append({'label':label,'command':command,'unmodified_test_sha256':hashlib.sha256(source.read_bytes()).hexdigest(),'selected_provider_include':str(include/'clock/SynchronizedClockProvider.hpp'),'outcomes':outcomes,'failures':sum(v['exit']!=0 for v in outcomes),'hardware':False})
+Path('/srv/espressio/scratch/H471-FIXED-PLATFORM-READER-REPEATS.json').write_text(json.dumps(rows,indent=2)+'\n')
+print('H471_FIXED_PLATFORM_UNMODIFIED_READER_REPEATS',[(r['label'],r['failures']) for r in rows],flush=True)

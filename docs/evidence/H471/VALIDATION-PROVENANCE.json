@@ -1,0 +1,31 @@
+{
+  "checkpoint": "H471",
+  "runs": [
+    "20261020T223136-75e3bfdc",
+    "20261020T223718-d3ae10cd",
+    "20261020T223721-fb81074c",
+    "20261020T223719-cafd3385",
+    "20261020T223720-d619627d",
+    "20261020T223434-105ee279",
+    "20261020T223433-1f9387e4",
+    "20261020T223435-edd7cb21",
+    "20261020T223435-a7015f5d",
+    "20261020T223436-b2dc84ba",
+    "20261020T223437-1e7f38bf",
+    "20261020T224750-5a0a0bd2",
+    "20261020T224404-02c5d59d",
+    "20261020T224749-afd0f34e",
+    "20261020T224847-c130ed06",
+    "20261020T221355-6d722853",
+    "20261020T222231-99f98eda"
+  ],
+  "original_clock_release_failure": "20261020T220703-f5371a94",
+  "original_native_audit_harness_failure": "20261020T224405-533252b3",
+  "native_harness_failure_reason": "All six native builds passed; standalone old-header compiler name needed the exact installed toolchain path. Corrected audit reran unchanged sources and used an exact atomic-helper symbol check. Original receipt/script retained.",
+  "platform_source_before": "e653cb0e4428fed0cfcf61f890d1da81dcbd01be",
+  "clock_source_before_projection": "fabe5a15dc5788f8da2e5d0a91e8afe398d462f8",
+  "logical_generation_bits": 63,
+  "new_storage_members": 0,
+  "hardware": false,
+  "root": false
+}
