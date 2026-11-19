@@ -2,7 +2,7 @@
 
 **Classification:** INTERNAL PROVIDER CONTRACT. [Source](../src/concurrency/SequentiallyConsistentAtomicWord32Contract.hpp). [Normative behavior](../docs/SEQUENTIALLY-CONSISTENT-ATOMIC-WORD.MD).
 
-SequentiallyConsistentAtomicWord32ProviderTraits<TAtomicWordProvider> completely validates the original provider plus the opt-in stronger contract. TAtomicWordProvider is the concrete Composition-selected provider; its promise applies across participating words in one ordering domain.
+`SequentiallyConsistentAtomicWord32ProviderTraits<TAtomicWordProvider>` completely validates the original provider plus the opt-in stronger contract. TAtomicWordProvider is the concrete Composition-selected provider; its promise applies across participating words in one ordering domain.
 
 | Member | Purpose |
 |---|---|
