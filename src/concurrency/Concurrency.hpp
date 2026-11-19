@@ -2,4 +2,5 @@
 
 #include "ConcurrencyComposition.hpp"
 #include "AtomicWord32Contract.hpp"
+#include "SequentiallyConsistentAtomicWord32Contract.hpp"
 #include "ConcurrentSnapshot.hpp"

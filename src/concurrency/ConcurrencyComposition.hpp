@@ -14,6 +14,11 @@ namespace ESPressio::Platform::Concurrency {
     struct LockFree final : Framework::Property<AtomicWord32, bool> {};
 
 
+    /// Optional promise that strong loads/stores share one sequentially consistent order across words.
+    /// Absence or false leaves only the original base atomic-word contract available.
+    struct SupportsSequentiallyConsistentLoadStore final : Framework::Property<AtomicWord32, bool> {};
+
+
     /// Number of bytes occupied by one concrete AtomicWord32 object.
     struct AtomicWordStorageBytes final : Framework::Property<AtomicWord32, std::size_t> {};
 

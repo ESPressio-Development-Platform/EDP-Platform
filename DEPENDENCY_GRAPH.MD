@@ -31,3 +31,8 @@ Demo projects may select concrete provider libraries as build-only dependencies;
 ## H471 coherent snapshot publication
 
 [Buffer-reuse ordering and rollover](docs/H471-SNAPSHOT-ORDERING-PROOF.MD) use existing release/acquire words and the same fixed buffers/metadata. A stable rollover marker preserves reader progress while a writer is paused; the documented logical generation is63bits. No public API, retained storage, Clock, backend, lock, task, dependency or0.1.0 version change. Complete mandatory graph remains EDP-Platform -> EDP-System, with no optional edge.
+
+
+## Optional stronger atomic ordering
+
+This extends the existing AtomicWord32 owner. Direct and recursive library edges remain solely EDP-Platform -> EDP-System, with no optional upward dependency. Portable is an application/demo selection. Tests use real System Composition and a host-only shape fixture, not a production provider.

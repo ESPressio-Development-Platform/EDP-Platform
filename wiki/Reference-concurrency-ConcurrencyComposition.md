@@ -2,9 +2,8 @@
 
 **Primary classification:** PUBLIC COMPOSITION API
 
-**Source baseline:** `34c35862978f9a37c5d99c2198b91134042038eb`
+**Source:** [current source](../src/concurrency/ConcurrencyComposition.hpp)
 
-[Open exact source](https://github.com/ESPressio-Development-Platform/EDP-Platform/blob/34c35862978f9a37c5d99c2198b91134042038eb/src/concurrency/ConcurrencyComposition.hpp)
 
 ## Direct includes
 
@@ -43,3 +42,8 @@ Number of bytes occupied by one concrete AtomicWord32 object.
 struct AtomicWordStorageBytes final : Framework::Property<AtomicWord32, std::size_t> {};
 ```
 
+
+
+## Optional strong-ordering extension
+
+PUBLIC COMPOSITION property SupportsSequentiallyConsistentLoadStore belongs to AtomicWord32. True promises a single sequentially consistent order across participating strong operations on the provider's words. Absent/false leaves the original contract. The concurrency umbrella also exposes the optional [provider validator](Reference-concurrency-SequentiallyConsistentAtomicWord32Contract); it adds no mandatory methods to base providers. See [normative semantics](../docs/SEQUENTIALLY-CONSISTENT-ATOMIC-WORD.MD).

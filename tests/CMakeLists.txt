@@ -106,3 +106,15 @@ foreach(test_name synchronization_contract_tests execution_contract_tests
     endif()
     add_test(NAME ${test_name} COMMAND ${test_name})
 endforeach()
+
+# The optional stronger contract must reject an incorrectly advertised provider,
+# while the original contract remains valid without any optional metadata.
+find_package(Python3 COMPONENTS Interpreter REQUIRED)
+add_test(
+    NAME sequential_atomic_contract_cases
+    COMMAND
+        ${Python3_EXECUTABLE}
+        ${CMAKE_CURRENT_SOURCE_DIR}/run-sequential-atomic-contract-tests.py
+        --compiler ${CMAKE_CXX_COMPILER}
+        --system ${EDP_SYSTEM_SOURCE_DIR}
+)

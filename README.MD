@@ -30,6 +30,7 @@ If a proposed Platform abstraction appears to require `EDP-Memory`, `EDP-Clock`,
 
 The following Platform facilities are currently provided:
 
+- [Sequentially consistent atomic ordering](./docs/SEQUENTIALLY-CONSISTENT-ATOMIC-WORD.MD) — optional cross-word provider contract, preserving base-only providers.
 - [Concurrency Foundation](./docs/CONCURRENCY.MD) — lock-free 32-bit atomic-word capability and fixed-storage `ConcurrentSnapshot`.
 - [Synchronization](./docs/SYNCHRONIZATION.MD) — mutex, recursive mutex, read/write mutex, counting semaphore, latched signal and spin-lock capability contracts.
 - [Execution Context](./docs/EXECUTION.MD) — caller-storage-backed native execution-context capability used by higher execution semantics.

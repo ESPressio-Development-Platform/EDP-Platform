@@ -4,6 +4,8 @@ Every production header under `src/` has a source-derived reference page.
 
 | Source header | Classification | Reference |
 |---|---|---|
+| src/concurrency/SequentiallyConsistentAtomicWord32Contract.hpp | INTERNAL PROVIDER CONTRACT | [open](Reference-concurrency-SequentiallyConsistentAtomicWord32Contract) |
+
 | `src/concurrency/AtomicWord32Contract.hpp` | INTERNAL PROVIDER API | [open](Reference-concurrency-AtomicWord32Contract) |
 | `src/concurrency/Concurrency.hpp` | PUBLIC API | [open](Reference-concurrency-Concurrency) |
 | `src/concurrency/ConcurrencyComposition.hpp` | PUBLIC COMPOSITION API | [open](Reference-concurrency-ConcurrencyComposition) |

@@ -1,7 +1,7 @@
 #include <cstdint>
 
 #include <ESPressio_Platform.hpp>
-#include <ESPressio_Platform_Portable.hpp>
+#include <ESPressio_Platform_Portable_AtomicWord32.hpp>
 
 namespace Demo {
 
@@ -22,6 +22,14 @@ namespace Demo {
     /// Runs the ConcurrentSnapshot demonstration.
     int Run() noexcept {
         using AtomicProvider = ESPressio::Platform::Portable::Concurrency::AtomicWord32Provider;
+        using StrongTraits =
+            ESPressio::Platform::Concurrency::Detail::SequentiallyConsistentAtomicWord32ProviderTraits<AtomicProvider>;
+        static_assert(sizeof(StrongTraits) > 0U);
+
+        AtomicProvider::Word publication;
+        publication.StoreSequentiallyConsistent(1U);
+        if (publication.LoadSequentiallyConsistent() != 1U) { return 2; }
+
         using Snapshot = ESPressio::Platform::Concurrency::ConcurrentSnapshot<
             SharedState,
             AtomicProvider
