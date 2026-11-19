@@ -39,3 +39,8 @@ This owner supplies no scheduler, clock, TLS slot, reclamation algorithm, captur
 The maintained contract matrix checks base-only compatibility, a positive optional provider and eight targeted failures: absent/false property, wrong load/store type, throwing load/store and missing load/store. The real Portable provider supplies a separate cross-word ordering regression.
 
 No production compiler switch is added. EDP_PLATFORM_SC_NEGATIVE_CASE is test-only: 0 selects the positive fixture, 1–8 select the corresponding deliberate violation. Original base consumers need no new methods or metadata.
+
+
+## Current ESP32 qualification limit
+
+The stock Arduino-ESP32 3.3.12 demo build rejects the Portable provider under its actual SDK/compiler flags: std::atomic<uint32_t>::is_always_lock_free is false. The existing mandatory guard remains intact. These Arduino forms demonstrate the API source but are not an enabled/qualified ESP32 runtime profile on that SDK. Select a qualified provider/toolchain; native Platform support and the complete Profiling lifecycle are separate work. Bare compiler feasibility without the real SDK flags is insufficient evidence.
