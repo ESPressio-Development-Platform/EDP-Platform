@@ -11,3 +11,5 @@ Concrete providers are demo/build selections only and do not change the `EDP-Pla
 ## C++ Language Baseline
 
 All PlatformIO-compatible demos require C++20 and select the maintained PIOArduino ESP32 platform package explicitly. PIOArduino is the recommended ESP32 PlatformIO-compatible environment for ESPressio.
+
+- [Typed current-context vocabulary](../docs/CURRENT-CONTEXT-BINDING.MD): implementation with explicit qualification boundaries.

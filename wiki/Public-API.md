@@ -5,3 +5,5 @@ Public capability contracts include AtomicWord32, Mutex, RecursiveMutex, ReadWri
 `WaitTimeout` explicitly distinguishes no-wait, finite nanosecond waits and forever. ExecutionContext exposes logical priority and processor-affinity vocabulary plus provider properties describing support and required storage. RandomByteSource advertises whether output is cryptographically suitable.
 
 Exact declarations, template parameters and signatures remain authoritative in the headers exported by `ESPressio_Platform.hpp`.
+
+- [Typed current-context vocabulary](../docs/CURRENT-CONTEXT-BINDING.MD): implementation with explicit qualification boundaries.

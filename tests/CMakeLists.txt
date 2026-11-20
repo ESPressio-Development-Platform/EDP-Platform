@@ -118,3 +118,13 @@ add_test(
         --compiler ${CMAKE_CXX_COMPILER}
         --system ${EDP_SYSTEM_SOURCE_DIR}
 )
+
+# The optional binding vocabulary must not weaken exact typed outcomes or noexcept guarantees.
+add_test(
+    NAME current_context_binding_contract_cases
+    COMMAND
+        ${Python3_EXECUTABLE}
+        ${CMAKE_CURRENT_SOURCE_DIR}/run-current-context-binding-contract-tests.py
+        --compiler ${CMAKE_CXX_COMPILER}
+        --system ${EDP_SYSTEM_SOURCE_DIR}
+)

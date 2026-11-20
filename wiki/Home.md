@@ -17,3 +17,5 @@ Mandatory: EDP-System only.
 ## Developer map
 
 Use [Architecture](Architecture.md), [Public API](Public-API.md), [Internal API](Internal-API.md), [Implementation](Implementation.md), [Composition](Composition.md), [Resources / Lifecycle / Concurrency](Resources-Lifecycle-Concurrency.md), and [Build / Test / Source](Build-Test-Source.md).
+
+- [Typed current-context vocabulary](../docs/CURRENT-CONTEXT-BINDING.MD): implementation with explicit qualification boundaries.

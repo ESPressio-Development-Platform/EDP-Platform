@@ -1,0 +1,17 @@
+name: Current context binding
+on:
+  push:
+  pull_request:
+jobs:
+  host:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [g++, clang++]
+        mode: [Debug, Release]
+    steps:
+      - uses: actions/checkout@v4
+      - run: git clone https://github.com/ESPressio-Development-Platform/EDP-System.git --branch main --depth 1 ../EDP-System
+      - run: cmake -S tests -B build -DCMAKE_CXX_COMPILER=${{ matrix.compiler }} -DCMAKE_BUILD_TYPE=${{ matrix.mode }} -DEDP_SYSTEM_SOURCE_DIR=../../EDP-System
+      - run: cmake --build build --parallel 2
+      - run: ctest --test-dir build --output-on-failure

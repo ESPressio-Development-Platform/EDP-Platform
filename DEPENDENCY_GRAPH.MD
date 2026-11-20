@@ -36,3 +36,7 @@ Demo projects may select concrete provider libraries as build-only dependencies;
 ## Optional stronger atomic ordering
 
 This extends the existing AtomicWord32 owner. Direct and recursive library edges remain solely EDP-Platform -> EDP-System, with no optional upward dependency. Portable is an application/demo selection. Tests use real System Composition and a host-only shape fixture, not a production provider.
+
+## Current-context binding source slice
+
+The new Platform vocabulary includes only Standard C++ and existing EDP-System composition facilities. The concrete native header adds ESP-IDF/FreeRTOS and Xtensa SDK headers within the SDK owner only. No Threading, Profiling or application domain dependency is introduced by either binding header. Native package selection currently pins Platform feature/profiling-v1 pending qualified reintegration; this is not an all-main release claim.
