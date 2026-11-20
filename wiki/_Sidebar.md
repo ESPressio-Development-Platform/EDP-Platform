@@ -13,3 +13,5 @@
 - [Compiler Definitions](Compiler-Definitions)
 
 - [Optional strong atomic ordering](Reference-concurrency-SequentiallyConsistentAtomicWord32Contract)
+
+- [Current-context binding contract](Reference-execution-CurrentContextBinding)

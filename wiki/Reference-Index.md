@@ -29,3 +29,5 @@ Every production header under `src/` has a source-derived reference page.
 > Latest deep-pass baseline: `7fce256f577b6cab76b6a5a7dcd64688154262bc`.
 
 - [Typed current-context vocabulary](../docs/CURRENT-CONTEXT-BINDING.MD): implementation with explicit qualification boundaries.
+
+- [Current-context binding contract](Reference-execution-CurrentContextBinding)

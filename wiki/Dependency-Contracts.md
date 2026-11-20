@@ -29,3 +29,9 @@ Shared capability. `RandomByteSourceFeatures` is a flag property. `Cryptographic
 EDP-Platform defines contracts only. SDK-backed implementations belong to the repository owning the native API: FreeRTOS, ESP-IDF, Portable, or Arduino-specific integration.
 
 > Dependency contract audit baseline: `785070b8c408627eb54eab495214a75f61f9bb75` (`main`).
+
+## Optional current-context binding
+
+The added vocabulary depends only on Standard C++ and existing EDP-System composition. Concrete selection belongs to application Bootstrap. The qualified native realization is in EDP-Platform-ESP-IDF; it is not a mandatory or optional source dependency of Platform. No reverse Threading/Profiling edge is permitted.
+
+See [exact reference](Reference-execution-CurrentContextBinding).
